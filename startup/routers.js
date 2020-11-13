@@ -1,6 +1,5 @@
 const express = require("express");
 const customersRouter = require("../apis/customersapi");
-const adminsRouter = require("../apis/adminsapi");
 const adminRouter = require("../apis/adminsapi");
 const productRouter = require("../apis/productsapi");
 const orderRouter = require("../apis/ordersapi");
