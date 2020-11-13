@@ -6,8 +6,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 process.on("uncaughtException", (ex) => {
-  console.log("uncaugth exception neche ha");
-
+  console.log("uncaugth exception");
   console.log(ex);
   process.exit(1);
 });
@@ -21,10 +20,15 @@ process.on("unhandledRejection", (ex) => {
   });
 
 
-
- mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/test", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
+  mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/test", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
  .then(() => console.log("connected to the database."))
  .catch(err => console.log(`Error:   ${err}`));
+
+
+
+//  mongoose.connect("mongodb://localhost/mart", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
+//  .then(() => console.log("connected to the database."))
+//  .catch(err => console.log(`Error:   ${err}`));
 
 // const p = Promise.reject(new Error("Failed miserably"));
 // p.then(() => console.log("done"));
@@ -33,8 +37,8 @@ process.on("unhandledRejection", (ex) => {
   
 
 require("./startup/routers")(app);
-require("./startup/prod")(app);
-require("./startup/config");
+// require("./startup/prod")(app);
+require("./startup/config")(app);
 
  
 const port = process.env.PORT || 3000
