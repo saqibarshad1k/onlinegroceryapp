@@ -1,7 +1,7 @@
 const express = require("express");
 const productRouter = express.Router();
 const _ = require("lodash");
-const {Product, Maincatagory, Subcatagory, maincatagoryValidation, subcatagoryValidation, productValidation} = require("../modals/Product");
+const {Product, Maincatagory, Subcatagory, maincatagoryValidation, subcatagoryValidation, productValidation} = require("../modals/product");
 const jwt = require("jsonwebtoken"); 
 const config = require("config");
 const auth = require("../middlewares/adminAuth");
