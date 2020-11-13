@@ -20,7 +20,7 @@ process.on("unhandledRejection", (ex) => {
   });
 
 
-  mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/supermart", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
+  mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/<supermart>?retryWrites=true&w=majority", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
  .then(() => console.log("connected to the database."))
  .catch(err => console.log(`Error:   ${err}`));
 
