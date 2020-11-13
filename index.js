@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 process.on("uncaughtException", (ex) => {
-  console.log("uncaugth exception");
+  console.log("uncaugth exception IS DOWN THERE");
   console.log(ex);
   process.exit(1);
 });
@@ -37,8 +37,8 @@ process.on("unhandledRejection", (ex) => {
   
 
 require("./startup/routers")(app);
-// require("./startup/prod")(app);
-//require("./startup/config")(app);
+require("./startup/prod")(app);
+require("./startup/config")(app);
 
  
 const port = process.env.PORT || 3000
