@@ -1,3 +1,4 @@
 {
-    "jwtprivatekey":"mart_jwtprivatekey"
+    "jwtprivatekey":"mart_jwtprivatekey",
+    "db":"mart_db"
 }

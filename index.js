@@ -7,7 +7,6 @@ const app = express();
 
 process.on("uncaughtException", (ex) => {
   console.log("uncaugth exception");
-  console.log("express ke bahar Phada");
   console.log(ex);
   process.exit(1);
 });
