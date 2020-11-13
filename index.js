@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const app = express();
 
 process.on("uncaughtException", (ex) => {
-  console.log("uncaugth exception");
+  console.log("uncaugth exception neche ha");
+
   console.log(ex);
   process.exit(1);
 });
