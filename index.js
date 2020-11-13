@@ -38,7 +38,7 @@ process.on("unhandledRejection", (ex) => {
 
 require("./startup/routers")(app);
 // require("./startup/prod")(app);
-require("./startup/config")(app);
+//require("./startup/config")(app);
 
  
 const port = process.env.PORT || 3000
