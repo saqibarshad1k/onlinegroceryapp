@@ -1,4 +1,3 @@
 {
-    "jwtprivatekey":"",
-    "db":"mongodb://localhost/mart"
+    "jwtprivatekey":""
 }
