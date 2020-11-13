@@ -28,7 +28,7 @@ const customerSchema = new mongoose.Schema({
         type: String,
         maxlength: 20,
         minlength: 11,
-    //    unique: true,
+        unique: true,
         required: true
     },
     password: {
