@@ -56,7 +56,10 @@ customersRouter.post("/signin", async (req, res)=>
 });
 
 
+customersRouter.get("/get", async(req, res) =>{
 
+    return res.send("Depolyment working successfully.")
+});
 customersRouter.post("/signup", async(req, res)=>{
 
        const {error} =  signupValidation(req.body);
