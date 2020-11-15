@@ -6,15 +6,15 @@ const mongoose = require("mongoose");
 const app = express();
 
 process.on("uncaughtException", (ex) => {
-  console.log("uncaugth exception IS DOWN THERE");
+  console.log("This exception is caught outside express. The error is below:");
   console.log(ex);
   process.exit(1);
 });
 
-// throw new Error("error occured");
+
 
 process.on("unhandledRejection", (ex) => {
-    console.log("unhandled promise");
+    console.log("Unhandled promise rejection from index. Error is below:");
     console.log(ex);
     process.exit(1);
   });

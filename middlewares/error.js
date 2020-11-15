@@ -1,3 +1,3 @@
 module.exports = function(err, req, res, next){
-    res.status(500).send("something went wrong");
+   return res.status(500).send("Some error occured inside express. The error is below:");
 }

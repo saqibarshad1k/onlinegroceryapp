@@ -1,4 +1,6 @@
 const express = require("express");
+const cors = require('cors')
+
 const customersRouter = require("../apis/customersapi");
 const adminRouter = require("../apis/adminsapi");
 const productRouter = require("../apis/productsapi");
@@ -10,6 +12,7 @@ const error = require("../middlewares/error");
 module.exports = function(app){
 
 app.use(express.json());
+app.use(cors())
 app.use("/apis/customer", customersRouter);
 app.use("/apis/admin", adminRouter);
 app.use("/apis/product", productRouter);

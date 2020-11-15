@@ -21,15 +21,15 @@ adminsRouter.get("", auth, asyncMiddleware(async (req, res) =>{
 
 }));
 
-adminsRouter.get("/me", auth, async (req, res)=>{
+adminsRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
     const id = await Admin.findById(req.admin._id).select("-password");
 
     return res.send(id);
 
-})
+}));
 
-adminsRouter.post("/signin", async (req, res)=>
+adminsRouter.post("/signin", asyncMiddleware( async  (req, res)=>
 {
 
     const {error} =  signinValidation(req.body);
@@ -62,13 +62,13 @@ adminsRouter.post("/signin", async (req, res)=>
 
     
 
-});
-
-adminsRouter.put("/")
+}));
 
 
 
-adminsRouter.post("/signup", async(req, res)=>{
+
+
+adminsRouter.post("/signup", asyncMiddleware( async(req, res)=>{
 
        const {error} =  signupValidation(req.body);
 
@@ -96,7 +96,7 @@ adminsRouter.post("/signup", async(req, res)=>{
         console.log(ex.message)
     }
     
-});
+}));
 
 
 

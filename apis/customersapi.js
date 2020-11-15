@@ -6,21 +6,23 @@ const {Customer, signupValidation, signinValidation} = require("../modals/custom
 const jwt = require("jsonwebtoken"); 
 const config = require("config");
 const auth = require("../middlewares/customerAuth")
+const asyncMiddleware = require("../middlewares/asyncerrorhandler")
+
 
 // const {Order, orderStageOneValidation} = require("../models/order");
 // const {MainCata, SubCata, Product, Cart} = require("../models/product")
 // var lodash = require('lodash');
 
 
-customersRouter.get("/me", auth, async (req, res)=>{
+customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
     const id = await Customer.findById(req.customer._id).select("-password");
 
     return res.send(id);
 
-})
+}));
 
-customersRouter.post("/signin", async (req, res)=>
+customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
 {
 
     const {error} =  signinValidation(req.body);
@@ -53,14 +55,16 @@ customersRouter.post("/signin", async (req, res)=>
 
     
 
-});
+}));
 
 
-customersRouter.get("/get", async(req, res) =>{
+customersRouter.get("/get", asyncMiddleware( async(req, res) =>{
 
     return res.send("Depolyment working successfully.")
-});
-customersRouter.post("/signup", async(req, res)=>{
+}));
+
+
+customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
 
        const {error} =  signupValidation(req.body);
 
@@ -89,9 +93,9 @@ customersRouter.post("/signup", async(req, res)=>{
         console.log(ex.message)
     }
     
-});
+}));
 
-customersRouter.put("/updatecustname/:id", auth, async (req, res) => {
+customersRouter.put("/updatecustname/:id", auth,asyncMiddleware( async (req, res) => {
 
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
@@ -101,9 +105,9 @@ customersRouter.put("/updatecustname/:id", auth, async (req, res) => {
         });
     
         return  res.send(cust);
-});
+}));
 
-customersRouter.put("/updatecustlocation/:id", auth, async (req, res) => {
+customersRouter.put("/updatecustlocation/:id", auth, asyncMiddleware( async (req, res) => {
 
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
@@ -113,9 +117,9 @@ customersRouter.put("/updatecustlocation/:id", auth, async (req, res) => {
         });
     
         return  res.send(cust);
-});
+}));
 
-customersRouter.put("/updatecustphone/:id", auth, async (req, res) => {
+customersRouter.put("/updatecustphone/:id", auth, asyncMiddleware( async (req, res) => {
 
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
@@ -125,9 +129,9 @@ customersRouter.put("/updatecustphone/:id", auth, async (req, res) => {
         });
     
         return  res.send(cust);
-});
+}));
 
-customersRouter.put("/updatecustaddress/:id", auth, async (req, res) => {
+customersRouter.put("/updatecustaddress/:id", auth,asyncMiddleware( async (req, res) => {
 
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
@@ -137,9 +141,9 @@ customersRouter.put("/updatecustaddress/:id", auth, async (req, res) => {
         });
     
         return  res.send(cust);
-});
+}));
 
-customersRouter.put("/updatecustpassword/:id", auth, async (req, res) => {
+customersRouter.put("/updatecustpassword/:id", auth, asyncMiddleware( async (req, res) => {
 
     var cust = await Customer.findById({ _id: req.params.id });
 
@@ -153,7 +157,7 @@ customersRouter.put("/updatecustpassword/:id", auth, async (req, res) => {
 
     
         return  res.send(cust);
-});
+}));
 
 
 
