@@ -73,7 +73,7 @@ customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
        }
 
     let customer = new Customer(
-        _.pick(req.body.Object.data, ["name", "phone", "password", "address", "location"])
+        _.pick(req.body, ["name", "phone", "password", "address", "location"])
  );
 
      const salt = await bcrypt.genSalt(10);
