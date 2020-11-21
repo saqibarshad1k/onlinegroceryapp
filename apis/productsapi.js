@@ -101,7 +101,8 @@ productRouter.post("/addmaincatagory", async(req, res)=>{
 
  let newmaincatagory = new Maincatagory(
      {
-         maincatagoryname: req.body.maincatagoryname
+         maincatagoryname: req.body.maincatagoryname,
+         image: req.body.image
      });
 
      newmaincatagory = await newmaincatagory.save();
@@ -131,7 +132,8 @@ productRouter.post("/addsubcatagory", async(req, res)=>{
  let newsubcatagory = new Subcatagory(
      {
          subcatagoryname: req.body.subcatagoryname,
-         maincatagoryname: req.body.maincatagoryname
+         maincatagoryname: req.body.maincatagoryname,
+         image: req.body.image
      });
 
      newsubcatagory = await newsubcatagory.save();

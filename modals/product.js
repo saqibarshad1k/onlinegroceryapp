@@ -9,6 +9,9 @@ const maincatagorySchema = new mongoose.Schema({
         minlength:1,
         maxlength:50,
         required: true
+    },
+    image: {
+        type:String
     }
 });
 
@@ -18,6 +21,9 @@ const subcatagorySchema = new mongoose.Schema({
         minlength:1,
         maxlength:50,
         required: true
+    },
+    image: {
+        type:String
     },
     maincatagoryname:{
         type: String,
@@ -104,7 +110,7 @@ function maincatagoryValidation(credentials){
     const schema = {
        
         maincatagoryname: Joi.string().min(1).max(50).required(),
-       
+        image: Joi.string()
     }
    
 
@@ -115,8 +121,8 @@ function subcatagoryValidation(credentials){
     const schema = {
        
         subcatagoryname: Joi.string().min(1).max(50).required(),
-        maincatagoryname: Joi.string().min(1).max(50).required()
-       
+        maincatagoryname: Joi.string().min(1).max(50).required(),
+        image: Joi.string()
     }
    
 
