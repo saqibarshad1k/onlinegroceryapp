@@ -74,7 +74,7 @@ function signupValidation(credentials){
 
 function signinValidation(credentials){
     const schema = {
-        phone: Joi.string().min(11).max(11).required(),
+        phone: Joi.string().min(13).max(13).required(),
         password: Joi.string().min(8).max(20).required(),
        
     }
