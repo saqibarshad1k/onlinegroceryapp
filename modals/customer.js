@@ -42,8 +42,7 @@ const customerSchema = new mongoose.Schema({
         required: true
     },
     location:{
-        type: [Number],
-        require: true
+        type: [Number]
     }
 });
 
@@ -65,7 +64,7 @@ function signupValidation(credentials){
         phone: Joi.string().min(11).max(20).required(),
         password: Joi.string().min(8).max(20).required(),
         address: Joi.string().required(),
-        location: Joi.array().items(Joi.number()).required()
+        location: Joi.array().items(Joi.number())
         
     }
    
