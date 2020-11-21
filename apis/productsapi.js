@@ -11,10 +11,10 @@ const productManagerRole = require("../middlewares/productManagerRole");
 
 
 
-productRouter.get("/getsubcategory", async(req, res)=>{
+productRouter.get("/getsubcategory/:main", async(req, res)=>{
 
     
-    const subCate = await Subcategory.find({maincategoryname: req.body.maincategoryname});   
+    const subCate = await Subcategory.find({maincategoryname: req.params.main});   
     return res.send(subCate);
  
 });
