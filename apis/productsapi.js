@@ -14,7 +14,7 @@ const productManagerRole = require("../middlewares/productManagerRole");
 productRouter.get("/getsubcategory", async(req, res)=>{
 
     
-    const subCate = await Subcategory.find({maincategoryname: req.body.maincategory});   
+    const subCate = await Subcategory.find({maincategoryname: req.body.maincategoryname});   
     return res.send(subCate);
  
 });
