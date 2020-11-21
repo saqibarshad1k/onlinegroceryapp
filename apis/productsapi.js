@@ -116,7 +116,7 @@ productRouter.post("/addmaincategory", async(req, res)=>{
 productRouter.get("/getsubcategory/:cata", async(req, res)=>{
 
     
-    const subCata = await Subcategory.find({maincategoryname: req.params.cata});   
+    const subCata = await Subcategory.find({maincategoryname: req.query.cata});   
     console.log(`Parameters: ${req.query.maincategoryname}`);
     console.log(`Body: ${req.body.maincategoryname}`);
     return res.send(subCata);
