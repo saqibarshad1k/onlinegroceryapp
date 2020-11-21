@@ -49,7 +49,7 @@ const customerSchema = new mongoose.Schema({
 
 
 customerSchema.methods.generateAuthToken = function(){
-    const token = jwt.sign({ _id: this._id }, config.get("jwtprivatekey"));
+    const token = jwt.sign({ _id: this._id, name: this.name, phone: this.phone }, config.get("jwtprivatekey"));
     return token;
 
 }
