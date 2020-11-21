@@ -113,7 +113,7 @@ productRouter.post("/addmaincategory", async(req, res)=>{
   
  
 
-productRouter.get("/getsubcategory/cata", async(req, res)=>{
+productRouter.get("/getsubcategory/:cata", async(req, res)=>{
 
     
     const subCata = await Subcategory.find({maincategoryname: req.pasrams.cata});   
