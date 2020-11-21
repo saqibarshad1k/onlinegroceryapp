@@ -5,6 +5,7 @@ const customersRouter = require("../apis/customersapi");
 const adminRouter = require("../apis/adminsapi");
 const productRouter = require("../apis/productsapi");
 const orderRouter = require("../apis/ordersapi");
+const bodyParser = require("body-parser")
 
 const error = require("../middlewares/error");
 // const adminRouter = require("../apis/admin");
