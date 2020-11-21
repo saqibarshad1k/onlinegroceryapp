@@ -1,7 +1,7 @@
 const express = require("express");
 const productRouter = express.Router();
 const _ = require("lodash");
-const {Product, Maincatagory, Subcatagory, maincatagoryValidation, subcatagoryValidation, productValidation} = require("../modals/product");
+const {Product,  Maincategory, Subcategory, maincategoryValidation, subcategoryValidation, productValidation} = require("../modals/product");
 const jwt = require("jsonwebtoken"); 
 const config = require("config");
 const auth = require("../middlewares/adminAuth");
@@ -11,11 +11,11 @@ const productManagerRole = require("../middlewares/productManagerRole");
 
 
 
-productRouter.get("/getsubcatagory", async(req, res)=>{
+productRouter.get("/getsubcategory", async(req, res)=>{
 
     
-    const subCata = await Subcatagory.find({maincatagoryname: req.body.maincatagory});   
-    return res.send(subCata);
+    const subCate = await Subcategory.find({maincategoryname: req.body.maincategory});   
+    return res.send(subCate);
  
 });
 
@@ -46,8 +46,8 @@ productRouter.put("/updateproduct/:id", async (req, res)=>{
             productname: req.body.productname,
             companyname: req.body.companyname,
             productprice: req.body.productprice,
-            maincatagory: req.body.maincatagory,
-            subcatagory: req.body.subcatagory,
+            maincategory: req.body.maincategory,
+            subcategory: req.body.subcategory,
             Type: req.body.Type,
             image: req.body.image
 
@@ -83,62 +83,62 @@ productRouter.post("/addnewproduct", async(req, res)=>{
     
 });
 
-productRouter.get("/getmaincatagory", async(req, res)=>{
+productRouter.get("/getmaincategory", async(req, res)=>{
 
     
-    const mainCata = await Maincatagory.find();   
-    return res.send(mainCata);
+    const mainCate = await Maincategory.find();   
+    return res.send(mainCate);
  
 });
 
-productRouter.post("/addmaincatagory", async(req, res)=>{
+productRouter.post("/addmaincategory", async(req, res)=>{
    
-    const {error} =  maincatagoryValidation(req.body);
+    const {error} =  maincategoryValidation(req.body);
 
     if(error) {
         return res.status(400).send(error);
     }
 
- let newmaincatagory = new Maincatagory(
+ let newmaincategory = new Maincategory(
      {
-         maincatagoryname: req.body.maincatagoryname,
+         maincategoryname: req.body.maincategoryname,
          image: req.body.image
      });
 
-     newmaincatagory = await newmaincatagory.save();
+     newmaincategory = await newmaincategory.save();
 
-     return res.send(newmaincatagory);
+     return res.send(newmaincategory);
     });
 
   
  
 
-productRouter.get("/getsubcatagory", async(req, res)=>{
+productRouter.get("/getsubcategory", async(req, res)=>{
 
     
-    const subCata = await Subcatagory.find();   
+    const subCata = await Subcategory.find();   
     return res.send(subCata);
  
 });
 
-productRouter.post("/addsubcatagory", async(req, res)=>{
+productRouter.post("/addsubcategory", async(req, res)=>{
    
-    const {error} =  subcatagoryValidation(req.body);
+    const {error} =  subcategoryValidation(req.body);
 
     if(error) {
         return res.status(400).send(error);
     }
 
- let newsubcatagory = new Subcatagory(
+ let newsubcategory = new Subcategory(
      {
-         subcatagoryname: req.body.subcatagoryname,
-         maincatagoryname: req.body.maincatagoryname,
+         subcategoryname: req.body.subcategoryname,
+         maincategoryname: req.body.maincategoryname,
          image: req.body.image
      });
 
-     newsubcatagory = await newsubcatagory.save();
+     newsubcategory = await newsubcategory.save();
 
-     return res.send(newsubcatagory);
+     return res.send(newsubcategory);
     });
  
 

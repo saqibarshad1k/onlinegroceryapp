@@ -3,8 +3,8 @@ const Joi = require("joi");
 const  jwt = require("jsonwebtoken");
 const config = require("config");
 
-const maincatagorySchema = new mongoose.Schema({
-    maincatagoryname:{
+const maincategorySchema = new mongoose.Schema({
+    maincategoryname:{
         type: String,
         minlength:1,
         maxlength:50,
@@ -15,8 +15,8 @@ const maincatagorySchema = new mongoose.Schema({
     }
 });
 
-const subcatagorySchema = new mongoose.Schema({
-    subcatagoryname:{
+const subcategorySchema = new mongoose.Schema({
+    subcategoryname:{
         type: String,
         minlength:1,
         maxlength:50,
@@ -25,7 +25,7 @@ const subcatagorySchema = new mongoose.Schema({
     image: {
         type:String
     },
-    maincatagoryname:{
+    maincategoryname:{
         type: String,
         minlength:1,
         maxlength:50,
@@ -57,13 +57,13 @@ const productSchema = new mongoose.Schema({
         minlength: 5,
         required: true
     },
-    maincatagory: {
+    maincategory: {
         type: String,
         minlength: 1,
         maxlength: 50,
         required: true
     },
-    subcatagory: {
+    subcategory: {
         type: String,
         minlength: 1,
         maxlength: 50,
@@ -86,8 +86,8 @@ const productSchema = new mongoose.Schema({
 
 
 const Product = mongoose.model("product", productSchema);
-const Maincatagory = mongoose.model("maincatagory", maincatagorySchema);
-const Subcatagory = mongoose.model("subcatagory", subcatagorySchema);
+const Maincategory = mongoose.model("maincategory", maincategorySchema);
+const Subcategory = mongoose.model("subcategory", subcategorySchema);
 
 function productValidation(credentials){
     const schema = {
@@ -95,8 +95,8 @@ function productValidation(credentials){
         productname: Joi.string().min(5).max(50).required(),
         productprice: Joi.string().min(1).max(6).required(),
         companyname: Joi.string().min(5).max(50).required(),
-        maincatagory: Joi.string().min(1).max(50).required(),
-        subcatagory: Joi.string().min(1).max(50).required(),
+        maincategory: Joi.string().min(1).max(50).required(),
+        subcategory: Joi.string().min(1).max(50).required(),
         Type: Joi.string().min(1).max(50).required(),
         image: Joi.string(),
         
@@ -106,10 +106,10 @@ function productValidation(credentials){
     return Joi.validate(credentials, schema);
 };
 
-function maincatagoryValidation(credentials){
+function maincategoryValidation(credentials){
     const schema = {
        
-        maincatagoryname: Joi.string().min(1).max(50).required(),
+        maincategoryname: Joi.string().min(1).max(50).required(),
         image: Joi.string()
     }
    
@@ -117,11 +117,11 @@ function maincatagoryValidation(credentials){
     return Joi.validate(credentials, schema);
 };
 
-function subcatagoryValidation(credentials){
+function subcategoryValidation(credentials){
     const schema = {
        
-        subcatagoryname: Joi.string().min(1).max(50).required(),
-        maincatagoryname: Joi.string().min(1).max(50).required(),
+        subcategoryname: Joi.string().min(1).max(50).required(),
+        maincategoryname: Joi.string().min(1).max(50).required(),
         image: Joi.string()
     }
    
@@ -131,10 +131,10 @@ function subcatagoryValidation(credentials){
 
 
 module.exports.Product = Product;
-module.exports.Maincatagory = Maincatagory;
-module.exports.Subcatagory = Subcatagory;
+module.exports.Maincategory = Maincategory;
+module.exports.Subcategory = Subcategory;
 module.exports.productValidation = productValidation;
-module.exports.maincatagoryValidation = maincatagoryValidation;
-module.exports.subcatagoryValidation = subcatagoryValidation;
+module.exports.maincategoryValidation = maincategoryValidation;
+module.exports.subcategoryValidation = subcategoryValidation;
 
 
