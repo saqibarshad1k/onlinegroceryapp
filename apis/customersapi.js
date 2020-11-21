@@ -51,7 +51,7 @@ customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
 
     const token = cust.generateAuthToken();
     
-      return res.header("x-auth-token", token).send("success");
+      return res.header("x-auth-token", "lp").send(token);
 
     
 
