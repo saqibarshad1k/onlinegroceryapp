@@ -69,7 +69,7 @@ customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
        const {error} =  signupValidation(req.body);
 
        if(error) {
-           return res.status(400).send(error);
+           return res.status(400).send("Lun pe char bc");
        }
 
     let customer = new Customer(
