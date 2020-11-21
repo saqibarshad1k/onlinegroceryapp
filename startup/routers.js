@@ -12,7 +12,8 @@ const error = require("../middlewares/error");
 module.exports = function(app){
 
 app.use(express.json());
-app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use("/apis/customer", customersRouter);
 app.use("/apis/admin", adminRouter);
 app.use("/apis/product", productRouter);
