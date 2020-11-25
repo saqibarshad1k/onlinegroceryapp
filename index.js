@@ -20,15 +20,15 @@ process.on("unhandledRejection", (ex) => {
   });
 
 
-  mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/<supermart>?retryWrites=true&w=majority", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
- .then(() => console.log("connected to the database."))
- .catch(err => console.log(`Error:   ${err}`));
-
-
-
-//  mongoose.connect("mongodb://localhost/mart", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
+//   mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/<supermart>?retryWrites=true&w=majority", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
 //  .then(() => console.log("connected to the database."))
 //  .catch(err => console.log(`Error:   ${err}`));
+
+
+
+ mongoose.connect("mongodb://localhost/mart", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
+ .then(() => console.log("connected to the database."))
+ .catch(err => console.log(`Error:   ${err}`));
 
 // const p = Promise.reject(new Error("Failed miserably"));
 // p.then(() => console.log("done"));

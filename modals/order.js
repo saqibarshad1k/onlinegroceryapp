@@ -2,6 +2,35 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const  jwt = require("jsonwebtoken");
 const config = require("config");
+const { ProductSchema } = require("./product")
+
+const Cust = new mongoose.Schema({
+    
+
+    name:{
+        type: String,
+        maxlength: 30, 
+        minlength: 5,
+        required: true
+    },
+    phone:{
+        type: String,
+        unique: false,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    location:{
+        lat: Number,
+        long: Number
+    }
+});
+
+
+
+
 
 const orderSchema = new mongoose.Schema({
 
@@ -15,22 +44,25 @@ const orderSchema = new mongoose.Schema({
         default: Date.now
     },
     customer: {
-            type: mongoose.Types.ObjectId,
-        required: true,
-        default: null
+            type: Cust,
+            required: true,
+            unique: false
     },
     orderitems:[{
-        productID: {
-            type: mongoose.Types.ObjectId,
-        required: true,
-        default: null
-    },
-    quantity: {
+        product: {
+           type: ProductSchema,
+           required: true
+        },
+        quantity: {
         type: Number,
         required: true,
         default: null
     }
-    }]
+    }],
+    total: {
+        type: Number,
+        required: true
+    }
 });
 
 
@@ -45,11 +77,9 @@ function orderValidation(credentials){
     const schema = {
         // cart: Joi.object(),
     
-        customer: Joi.string().required(),
-        orderitems : Joi.array().items({
-            productID: Joi.string(),
-            quantity: Joi.number()  
-          })
+        customer: Joi.required(),
+        orderitems : Joi.required(),
+        total: Joi.required()
         
     }
    

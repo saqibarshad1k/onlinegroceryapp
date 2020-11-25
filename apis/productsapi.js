@@ -1,7 +1,7 @@
 const express = require("express");
 const productRouter = express.Router();
 const _ = require("lodash");
-const {Product,  Maincategory, Subcategory, maincategoryValidation, subcategoryValidation, productValidation} = require("../modals/product");
+const {Product, subsubcategoryValidation, Subsubcategory,  Maincategory, Subcategory, maincategoryValidation, subcategoryValidation, productValidation} = require("../modals/product");
 const jwt = require("jsonwebtoken"); 
 const config = require("config");
 const auth = require("../middlewares/adminAuth");
@@ -67,7 +67,7 @@ productRouter.post("/addnewproduct", async(req, res)=>{
        }
 
     let product = new Product(
-        _.pick(req.body, ["productname", "companyname", "productprice", "maincatagory", "subcatagory", "image", "Type"])
+        _.pick(req.body, ["productname", "companyname", "productprice", "subsubcategoryname", "maincategoryname", "subcategoryname", "image", "type"])
  );
 
 
@@ -123,6 +123,29 @@ productRouter.get("/getsubcategory", async(req, res)=>{
     return res.send(subCata);
  
 });
+
+
+
+productRouter.post("/addsubsubcategory", async(req, res)=>{
+   
+    const {error} =  subsubcategoryValidation(req.body);
+
+    if(error) {
+        return res.status(400).send(error);
+    }
+
+ let newsubsubcategory = new Subsubcategory(
+     {
+        subsubcategoryname: req.body.subsubcategoryname,
+        subcategoryname: req.body.subcategoryname,
+         maincategoryname: req.body.maincategoryname,
+         image: req.body.image
+     });
+
+     newsubsubcategory = await newsubsubcategory.save();
+
+     return res.send(newsubsubcategory);
+    });
 
 productRouter.post("/addsubcategory", async(req, res)=>{
    

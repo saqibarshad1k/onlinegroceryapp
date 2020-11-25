@@ -58,7 +58,7 @@ customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
 }));
 
 
-customersRouter.get("/get", asyncMiddleware( async(req, res) =>{
+customersRouter.get("/gettestText", asyncMiddleware( async(req, res) =>{
 
     return res.send("Depolyment working successfully.")
 }));
@@ -69,7 +69,7 @@ customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
        const {error} =  signupValidation(req.body);
 
        if(error) {
-           return res.status(400).send("Lun pe char bc");
+           return res.status(400).send("Invalid info provided");
        }
 
     let customer = new Customer(
@@ -158,90 +158,6 @@ customersRouter.put("/updatecustpassword/:id", auth, asyncMiddleware( async (req
     
         return  res.send(cust);
 }));
-
-
-
-
-
-// customersRouter.get("/getuserdata/:id", async(req, res)=>{
-    
-//     const data = await Customer.findById(req.params.id);
-
-//     res.send(data);
-
-// })
-
-// customersRouter.get("/getmaincatagory", async(req, res)=>{
-
-    
-//     const mainCata = await MainCata.find();   
-//     res.send(mainCata);
- 
-// })
-
-
-
-// customersRouter.get("/getproducts/:id", async(req, res)=>{
-
-    
-//     const pro = await Product.find({subCatagory:req.params.id});   
-//     res.send(pro);
- 
-// })
-
-// customersRouter.get("/getsubcatagory/:id", async(req, res)=>{
-
-    
-//        const subCata = await SubCata.find({mainCatagory:req.params.id});   
-//        res.send(subCata);
-    
-// })
-
-
-
-// customersRouter.post("/addtocart", async (req, res)=>{
-
-
-//    const c = await Customer.findById({"_id": req.body.userId},{"cart.proId": req.body.proId});
-
-//    let d = lodash.filter(c.cart, {"proId": "5e2e37d161cb64220c71882f"})
-
-//    res.send(d);
-
-//     });
-
-// const c =  await Customer.findOneAndUpdate({ _id: req.body.userId }, 
-//     { $push:
-//         { cart :
-//             { proId: req.body.proId, count: "0"  }
-//         }
-//         });
-
-   
-
-// customersRouter.post("/orders", async(req, res)=>{
-
-//     const {error} =  orderStageOneValidation(req.body);
-
-//     if(error) {
-//         return res.status(400).send(error);
-//     }
-
-
-
-
-//  let order = new Order({
-//      custID: req.body.custID,
-//      order: req.body.order
-
-//  });
-
-//  order = await order.save();
- 
-//  res.send(order);
-
-// });
-
 
 
 module.exports = customersRouter;

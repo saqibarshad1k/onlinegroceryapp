@@ -9,11 +9,6 @@ const auth = require("../middlewares/adminAuth");
 const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 
 
-// const {Order, orderStageOneValidation} = require("../models/order");
-// const {MainCata, SubCata, Product, Cart} = require("../models/product")
-// var lodash = require('lodash');
-
-
 
 adminsRouter.get("", auth, asyncMiddleware(async (req, res) =>{
 
@@ -97,88 +92,6 @@ adminsRouter.post("/signup", asyncMiddleware( async(req, res)=>{
     }
     
 }));
-
-
-
-// adminsRouter.get("/getuserdata/:id", async(req, res)=>{
-    
-//     const data = await admin.findById(req.params.id);
-
-//     res.send(data);
-
-// })
-
-// adminsRouter.get("/getmaincatagory", async(req, res)=>{
-
-    
-//     const mainCata = await MainCata.find();   
-//     res.send(mainCata);
- 
-// })
-
-
-
-// adminsRouter.get("/getproducts/:id", async(req, res)=>{
-
-    
-//     const pro = await Product.find({subCatagory:req.params.id});   
-//     res.send(pro);
- 
-// })
-
-// adminsRouter.get("/getsubcatagory/:id", async(req, res)=>{
-
-    
-//        const subCata = await SubCata.find({mainCatagory:req.params.id});   
-//        res.send(subCata);
-    
-// })
-
-
-
-// adminsRouter.post("/addtocart", async (req, res)=>{
-
-
-//    const c = await admin.findById({"_id": req.body.userId},{"cart.proId": req.body.proId});
-
-//    let d = lodash.filter(c.cart, {"proId": "5e2e37d161cb64220c71882f"})
-
-//    res.send(d);
-
-//     });
-
-// const c =  await admin.findOneAndUpdate({ _id: req.body.userId }, 
-//     { $push:
-//         { cart :
-//             { proId: req.body.proId, count: "0"  }
-//         }
-//         });
-
-   
-
-// adminsRouter.post("/orders", async(req, res)=>{
-
-//     const {error} =  orderStageOneValidation(req.body);
-
-//     if(error) {
-//         return res.status(400).send(error);
-//     }
-
-
-
-
-//  let order = new Order({
-//      adminID: req.body.adminID,
-//      order: req.body.order
-
-//  });
-
-//  order = await order.save();
- 
-//  res.send(order);
-
-// });
-
 
 
 module.exports = adminsRouter;
