@@ -168,40 +168,6 @@ productRouter.post("/addsubcategory", async(req, res)=>{
     });
  
 
-
-
-
-
-// productRouter.get("/getuserdata/:id", async(req, res)=>{
-    
-//     const data = await Product.findById(req.params.id);
-
-//     res.send(data);
-
-// })
-
-
-
-
-
-// productRouter.get("/getproducts/:id", async(req, res)=>{
-
-    
-//     const pro = await Product.find({subCatagory:req.params.id});   
-//     res.send(pro);
- 
-// });
-
-// productRouter.get("/getsubcatagory/:id", async(req, res)=>{
-
-    
-//        const subCata = await SubCata.find({mainCatagory:req.params.id});   
-//        res.send(subCata);
-    
-// })
-
-
-
 // productRouter.post("/addtocart", async (req, res)=>{
 
 
@@ -229,9 +195,6 @@ productRouter.post("/addsubcategory", async(req, res)=>{
 //     if(error) {
 //         return res.status(400).send(error);
 //     }
-
-
-
 
 //  let order = new Order({
 //      custID: req.body.custID,
