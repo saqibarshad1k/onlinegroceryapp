@@ -91,6 +91,8 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
     const deliveryWorkers = await DeliveryWorker.find({areaCode: selectedArea.areaCode, status: "available"}).select("-password")
    
+
+
     for (var i = 0; i < deliveryWorkers.length; i++) {
         var object = deliveryWorkers[i];
 
@@ -108,6 +110,10 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
     const sorted = sortObjectsArray(deliveryWorkers, 'tempDist')
     selectedDeliveryWorker = sorted[0];
+
+    if(!selectedDeliveryWorker) {
+        return res.send("An error occured. Please try later.")
+    }
 
      console.log("Selected Area: " + selectedArea.areaCode)
     console.log("Store Selected: " + selectedStore.storeName)
