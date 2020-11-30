@@ -150,9 +150,9 @@ function productValidation(credentials){
         productName: Joi.string().min(1).max(50).required(),
         price: Joi.string().min(1).max(6).required(),
         companyName: Joi.string().min(1).max(50).required(),
-        mainCategory: Joi.required(),
-        subCategory: Joi.required(),
-        subsubCategory: Joi.required(),
+        maincategoryname: Joi.required(),
+        subcategoryname: Joi.required(),
+        subsubcategoryname: Joi.required(),
         image: Joi.string(),
         
     }
