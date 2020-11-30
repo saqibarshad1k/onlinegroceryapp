@@ -20,8 +20,8 @@ productRouter.post("/addnewproduct", async(req, res)=>{
     }
 
     const main = await Maincategory.findOne({_id: req.body.maincategoryname})
-    const sub = await Subcategory.findOne({_id: req.body.maincategoryname})
-    const subsub = await Subsubcategory.findOne({_id: req.body.maincategoryname})
+    const sub = await Subcategory.findOne({_id: req.body.subcategoryname})
+    const subsub = await Subsubcategory.findOne({_id: req.body.subsubcategoryname})
     
     if(!main || !sub || !subsub)
     {
