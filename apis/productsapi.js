@@ -137,7 +137,7 @@ productRouter.put("/updateproduct/:id", async (req, res)=>{
 
 //DELETE A PRODUCT
 
-productRouter.delete("deleteproduct/:id", async (req, res) => {
+productRouter.delete("/deleteproduct/:id", async (req, res) => {
     const prod = await Product.findByIdAndRemove(req.params.id);
   
     if (!prod) return res.status(404).send("Already deleted")
