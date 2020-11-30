@@ -19,9 +19,35 @@ productRouter.post("/addnewproduct", async(req, res)=>{
         return res.status(400).send(error);
     }
 
- let product = new Product(
-     _.pick(req.body, ["productName", "companyName", "price", "subsubCategory", "mainCategory", "subCategory", "image"])
-);
+    const main = await Maincategory.findOne({_id: req.body.maincategoryname})
+    const sub = await Subcategory.findOne({_id: req.body.maincategoryname})
+    const subsub = await Subsubcategory.findOne({_id: req.body.maincategoryname})
+    
+    if(!main || !sub || !subsub)
+    {
+        return res.status(404).send("Invalid data.")
+    }
+
+//  let product = new Product(
+//      _.pick(req.body, ["productName", "companyName", "price", "subsubCategory", "mainCategory", "subCategory", "image"])
+// );
+
+    let product = new Product({
+        productName : req.body.productName,
+        companyName : req.body.companyName,
+        price : req.body.price,
+        mainCategory: main,
+        subCategory: {
+            _id: sub._id,
+            subcategoryname: sub.subcategoryname
+        },
+        subsubCategory: {
+            _id: subsub._id,
+            subsubcategoryname: subsub.subsubcategoryname
+        },
+        image: req.body.image
+
+    })
 
 
  try {
