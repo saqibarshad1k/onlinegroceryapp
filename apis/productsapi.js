@@ -158,7 +158,7 @@ productRouter.post("/addsubcategory", async(req, res)=>{
  let newsubcategory = new Subcategory(
      {
          subcategoryname: req.body.subcategoryname,
-         maincategory: req.body.mainCategory,
+         mainCategory: req.body.mainCategory,
          image: req.body.image
      });
 
