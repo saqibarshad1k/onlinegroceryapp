@@ -7,6 +7,7 @@ const config = require("config");
 const auth = require("../middlewares/adminAuth");
 const adminRole = require("../middlewares/adminRole");
 const productManagerRole = require("../middlewares/productManagerRole");
+const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 
 // PRODUCTS ENDPOINTS
 // ADD NEW PRODUCT
