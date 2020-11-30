@@ -84,6 +84,15 @@ productRouter.put("/updateproduct/:id", async (req, res)=>{
 
 });
 
+//DELETE A PRODUCT
+
+router.delete("deleteproduct/:id", async (req, res) => {
+    const prod = await Product.findByIdAndRemove(req.params.id);
+  
+     return  res.send(prod);
+  });
+  
+
 //MAIN CATEGORY ENDPOINTS
 // ADD A NEW MAIN CATEGORY
 
