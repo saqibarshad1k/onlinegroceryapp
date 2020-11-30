@@ -42,7 +42,12 @@ productRouter.get("/getproduct/:id", async(req, res)=>{
 
     
     const prod = await Product.findOne({_id: req.params.id}); 
-    if(!prod) return res.status(404).send("Not found")  
+    if(!prod) 
+    {
+        return res.status(404).send("Not found")  
+   
+    }
+   
     return res.send(prod);
  
 });
