@@ -80,45 +80,60 @@ const subsubcategorySchema = new mongoose.Schema({
 const productSchema = new mongoose.Schema({
 
     
-    productname:{
+    productName:{
         type: String,
         maxlength: 50, 
         minlength: 1,
         required: true
     },
-    productprice:{
+    price:{
         type: String,
         maxlength: 6,
         minlength: 1,
         required: true
     },
-    companyname:{
+    companyName:{
         type: String,
         maxlength: 50,
         minlength: 1,
         required: true
     },
-    maincategoryname: {
-        type:  mongoose.Schema.Types.ObjectId,
-        required: true
+    mainCategory: {
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+        maincategoryname:{
+            type: String,
+            required: true
+
+        }
     },
-    subcategoryname: {
-        type:  mongoose.Schema.Types.ObjectId,
-        required: true
+    subCategory: {
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+        subcategoryname:{
+            type: String,
+            required: true
+
+        }
     },
     subsubcategoryname: {
-        type:  mongoose.Schema.Types.ObjectId,
-        required: true
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+        subsubcategoryname:{
+            type: String,
+            required: true
+
+        }
     },
     image:{
         type: String,
         default: null
-    },
-    type:{
-        type: String,
-        minlength: 1,
-        maxlength: 50,
-        required: true
     }
 });
 
@@ -135,10 +150,9 @@ function productValidation(credentials){
         productname: Joi.string().min(1).max(50).required(),
         productprice: Joi.string().min(1).max(6).required(),
         companyname: Joi.string().min(1).max(50).required(),
-        maincategoryname: Joi.required(),
-        subcategoryname: Joi.required(),
-        subsubcategoryname: Joi.required(),
-        type: Joi.string().min(1).max(50).required(),
+        mainCategory: Joi.required(),
+        subCategory: Joi.required(),
+        subsubcategory: Joi.required(),
         image: Joi.string(),
         
     }

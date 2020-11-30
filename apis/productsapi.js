@@ -67,7 +67,7 @@ productRouter.post("/addnewproduct", async(req, res)=>{
        }
 
     let product = new Product(
-        _.pick(req.body, ["productname", "companyname", "productprice", "subsubCategory", "mainCategory", "subCategory", "image", "type"])
+        _.pick(req.body, ["productName", "companyName", "price", "subsubCategory", "mainCategory", "subCategory", "image"])
  );
 
 
