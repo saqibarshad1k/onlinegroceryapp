@@ -38,19 +38,19 @@ productRouter.post("/addnewproduct", async(req, res)=>{
 
 // GET A PRODUCT
 
-productRouter.get("/getproduct/:id", async(req, res)=>{
+productRouter.get("/getproduct/:id", asyncMiddleware( async(req, res)=>{
 
     
     const prod = await Product.findOne({_id: req.params.id}); 
     if(!prod) 
     {
-        return res.status(404).send("Not found")  
+        return res.status(404).send("Not found")  ;
    
     }
    
     return res.send(prod);
  
-});
+}));
 
 
 // GET ALL PRODUCTS
