@@ -67,7 +67,7 @@ productRouter.post("/addnewproduct", async(req, res)=>{
        }
 
     let product = new Product(
-        _.pick(req.body, ["productname", "companyname", "productprice", "subsubcategoryname", "maincategoryname", "subcategoryname", "image", "type"])
+        _.pick(req.body, ["productname", "companyname", "productprice", "subsubCategory", "mainCategory", "subCategory", "image", "type"])
  );
 
 
@@ -137,8 +137,8 @@ productRouter.post("/addsubsubcategory", async(req, res)=>{
  let newsubsubcategory = new Subsubcategory(
      {
         subsubcategoryname: req.body.subsubcategoryname,
-        subcategoryname: req.body.subcategoryname,
-         maincategoryname: req.body.maincategoryname,
+        subCategory: req.body.subCategory,
+         mainCategory: req.body.mainCategory,
          image: req.body.image
      });
 
@@ -158,7 +158,7 @@ productRouter.post("/addsubcategory", async(req, res)=>{
  let newsubcategory = new Subcategory(
      {
          subcategoryname: req.body.subcategoryname,
-         maincategoryname: req.body.maincategoryname,
+         maincategory: req.body.mainCategory,
          image: req.body.image
      });
 
