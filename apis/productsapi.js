@@ -122,6 +122,9 @@ productRouter.get("/getmaincategory", async(req, res)=>{
 
     
     const mainCate = await Maincategory.find();   
+
+    if(!mainCate) return res.status(404).send("Not found")
+
     return res.send(mainCate);
  
 });
@@ -223,6 +226,8 @@ productRouter.get("/getasubsubcategory/:id", async(req, res)=>{
 
     
     const subsubCate = await SubSubcategory.findOne({_id: req.params.id});   
+    
+    
     return res.send(subsubCate);
  
 });
