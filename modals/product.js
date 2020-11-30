@@ -73,18 +73,8 @@ const subsubcategorySchema = new mongoose.Schema({
             required: true
 
         }
-    },
-    subsubCategory: {
-        _id: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true
-        },
-        subsubcategoryname:{
-            type: String,
-            required: true
-
-        }
     }
+    
 });
 
 const productSchema = new mongoose.Schema({
