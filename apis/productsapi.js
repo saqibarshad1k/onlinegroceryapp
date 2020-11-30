@@ -79,11 +79,12 @@ productRouter.put("/updateproduct/:id", async (req, res)=>{
 
     const product = await Product.findByIdAndUpdate({_id: req.params.id},{
         $set:{
-            productname: req.body.productname,
-            companyname: req.body.companyname,
-            productprice: req.body.productprice,
-            maincategory: req.body.maincategory,
-            subcategory: req.body.subcategory,
+            productName: req.body.productName,
+            companyName: req.body.companyName,
+            price: req.body.price,
+            mainCategory: req.body.mainCategory,
+            subCategory: req.body.subCategory,
+            subsubCategory: req.body.subsubCategory,
             image: req.body.image
 
         }
