@@ -9,7 +9,13 @@ const adminRole = require("../middlewares/adminRole");
 const productManagerRole = require("../middlewares/productManagerRole");
 
 
+productRouter.get("/getproduct/:id", async(req, res)=>{
 
+    
+    const prod = await Product.find({_id: req.params.id});   
+    return res.send(prod);
+ 
+});
 
 productRouter.get("/getsubcategory/:main", async(req, res)=>{
 
