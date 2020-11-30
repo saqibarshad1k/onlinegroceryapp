@@ -122,7 +122,7 @@ productRouter.get("/getmaincategory", async(req, res)=>{
 productRouter.get("/getamaincategory/:id", async(req, res)=>{
 
     
-    const main = await Maincategory.find({_id: req.params.id});   
+    const main = await Maincategory.findOne({_id: req.params.id});   
     return res.send(main);
  
 });
@@ -165,10 +165,10 @@ productRouter.post("/addsubcategory", async(req, res)=>{
  
 
 // GET A SUBCATEGORY
-productRouter.get("/getsubcategory/:id", async(req, res)=>{
+productRouter.get("/getasubcategory/:id", async(req, res)=>{
 
     
-    const subCate = await Subcategory.find({_id: req.params.id});   
+    const subCate = await Subcategory.findOne({_id: req.params.id});   
     return res.send(subCate);
  
 });
@@ -210,10 +210,10 @@ productRouter.get("/getsubsubcategory", async(req, res)=>{
 
 // GET A SUB SUB CATEGORY
 
-productRouter.get("/getsubsubcategory/:id", async(req, res)=>{
+productRouter.get("/getasubsubcategory/:id", async(req, res)=>{
 
     
-    const subsubCate = await SubSubcategory.find({_id: req.params.id});   
+    const subsubCate = await SubSubcategory.findOne({_id: req.params.id});   
     return res.send(subsubCate);
  
 });
