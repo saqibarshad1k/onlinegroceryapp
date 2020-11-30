@@ -120,7 +120,7 @@ const productSchema = new mongoose.Schema({
 
         }
     },
-    subsubcCategory: {
+    subsubCategory: {
         _id: {
             type: mongoose.Schema.Types.ObjectId,
             required: true
