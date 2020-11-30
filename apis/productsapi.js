@@ -103,14 +103,29 @@ productRouter.put("/updateproduct/:id", async (req, res)=>{
            return res.status(400).send(error);
        }
 
+       const main = await Maincategory.findOne({_id: req.body.maincategoryname})
+       const sub = await Subcategory.findOne({_id: req.body.subcategoryname})
+       const subsub = await Subsubcategory.findOne({_id: req.body.subsubcategoryname})
+       
+       if(!main || !sub || !subsub)
+       {
+           return res.status(404).send("Invalid data.")
+       }
+
     const product = await Product.findByIdAndUpdate({_id: req.params.id},{
         $set:{
             productName: req.body.productName,
             companyName: req.body.companyName,
             price: req.body.price,
-            mainCategory: req.body.mainCategory,
-            subCategory: req.body.subCategory,
-            subsubCategory: req.body.subsubCategory,
+            mainCategory: main,
+        subCategory: {
+            _id: sub._id,
+            subcategoryname: sub.subcategoryname
+        },
+        subsubCategory: {
+            _id: subsub._id,
+            subsubcategoryname: subsub.subsubcategoryname
+        },
             image: req.body.image
 
         }
