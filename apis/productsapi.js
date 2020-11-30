@@ -54,6 +54,8 @@ productRouter.get("/getallproducts",  async (req, res)=>{
 
     const products = await Product.find();
 
+    if(!products) return res.status(404).send("Not found")
+
     return res.send(products);
 
 })
