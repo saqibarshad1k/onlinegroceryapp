@@ -146,10 +146,10 @@ const Subsubcategory = mongoose.model("subsubcategory", subsubcategorySchema);
 
 function productValidation(credentials){
     const schema = {
-        // cart: Joi.object(),
-        productname: Joi.string().min(1).max(50).required(),
-        productprice: Joi.string().min(1).max(6).required(),
-        companyname: Joi.string().min(1).max(50).required(),
+        
+        productName: Joi.string().min(1).max(50).required(),
+        price: Joi.string().min(1).max(6).required(),
+        companyName: Joi.string().min(1).max(50).required(),
         mainCategory: Joi.required(),
         subCategory: Joi.required(),
         subsubcategory: Joi.required(),
