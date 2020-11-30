@@ -130,6 +130,15 @@ productRouter.get("/getsubcategory", async(req, res)=>{
  
 });
 
+productRouter.get("/getsubsubcategory", async(req, res)=>{
+
+    
+    const subsubCata = await Subsubcategory.find();   
+    return res.send(subsubCata);
+ 
+});
+
+
 
 
 productRouter.post("/addsubsubcategory", async(req, res)=>{
