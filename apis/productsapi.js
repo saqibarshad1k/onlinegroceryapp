@@ -41,7 +41,7 @@ productRouter.post("/addnewproduct", async(req, res)=>{
 productRouter.get("/getproduct/:id", async(req, res)=>{
 
     
-    const prod = await Product.find({_id: req.params.id});   
+    const prod = await Product.findOneById({_id: req.params.id});   
     return res.send(prod);
  
 });
