@@ -44,7 +44,7 @@ const adminSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    isOrderTraker:{
+    isOrderTracker:{
         type: Boolean,
         required: true
     }
@@ -67,7 +67,7 @@ function signupValidation(credentials){
         password: Joi.string().min(2).max(20).required(),
         isAdmin: Joi.boolean(),
         isProductManager: Joi.boolean(),
-        isOrderTraker: Joi.boolean(),
+        isOrderTracker: Joi.boolean(),
         
     }
    
