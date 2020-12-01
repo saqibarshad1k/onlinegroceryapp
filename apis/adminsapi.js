@@ -80,7 +80,7 @@ adminsRouter.post("/signup", asyncMiddleware( async(req, res)=>{
        }
 
     let admin = new Admin(
-        _.pick(req.body, ["name", "phone", "password"])
+        _.pick(req.body, ["name", "phone", "password", "isAdmin","isProductManager","isOrderTracker"])
  );
 
      const salt = await bcrypt.genSalt(10);
