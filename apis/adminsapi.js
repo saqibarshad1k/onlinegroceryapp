@@ -92,7 +92,10 @@ adminsRouter.post("/signup", asyncMiddleware( async(req, res)=>{
     try {
         admin = await admin.save();
       
-       return res.send(_.pick(admin, ["name","phone"]));
+        const token = admin.generateAuthToken();
+
+       return res.header("x-auth-token", token).header("access-control-expose-headers", "x-auth-token")
+       .send(_.pick(admin, ["name","phone"]));
 
     }
     catch(ex){
