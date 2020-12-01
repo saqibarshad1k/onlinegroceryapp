@@ -53,7 +53,10 @@ adminsRouter.post("/signin", asyncMiddleware( async  (req, res)=>
 
     const token = admin.generateAuthToken();
     
-      return res.header("x-auth-token", token).send(token);
+      return res
+      .header("x-auth-token", token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .send(token);
 
     
 
