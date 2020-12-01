@@ -73,7 +73,7 @@ adminsRouter.post("/signup", asyncMiddleware( async(req, res)=>{
 
        const ald = Admin.findOne({phone: req.body.phone})
        if(ald) {
-           return res.status(400).send("This user has already registered.")
+           return res.status(400).send(ald)
        }
 
     let admin = new Admin(
