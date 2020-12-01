@@ -71,13 +71,13 @@ adminsRouter.post("/signup", asyncMiddleware( async(req, res)=>{
            return res.status(400).send(error);
        }
 
-       const ald = Admin.findOne({phone: req.body.phone})
+       const ald = await Admin.findOne({phone: req.body.phone})
        if(ald) {
-           return res.status(400).send(ald)
+           return res.status(400).send("A user with this phone has already registered")
        }
 
     let admin = new Admin(
-        _.pick(req.body, ["name", "phone", "password", "address", "location"])
+        _.pick(req.body, ["name", "phone", "password"])
  );
 
      const salt = await bcrypt.genSalt(10);
