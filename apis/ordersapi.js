@@ -164,6 +164,10 @@ orderRouter.get("/getOrders", async(req, res)=>{
     io.on('event ha ye', (socket) => {
         console.log('a user connected');
       });
+
+
+      io.emit('event ha ye', 1000);
+    
       
 
     return res.send(orders);
