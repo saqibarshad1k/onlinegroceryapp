@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 // new 
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+
 
 
 
@@ -49,4 +49,4 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 // app.
 
 module.exports.port = port;
-module.exports.io = io;
+module.exports.server = server;
