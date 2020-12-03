@@ -150,7 +150,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     
 });
 
-io.of("/apis/order/socket").on("connection", (socket) => {
+io.of("https://evening-beach-81187.herokuapp.com/apis/order/getOrders").on("connection", (socket) => {
     console.log("socket.io: User connected: ", socket.id);
   
     socket.on("disconnect", () => {
