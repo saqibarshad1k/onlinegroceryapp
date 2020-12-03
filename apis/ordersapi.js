@@ -112,7 +112,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     selectedDeliveryWorker = sorted[0];
 
     if(!selectedDeliveryWorker) {
-        return res.send("An error occured. Please try later.")
+        return res.send("No deliveryWorker")
     }
 
      console.log("Selected Area: " + selectedArea.areaCode)
@@ -127,7 +127,9 @@ orderRouter.post("/placeorder",  async(req, res)=>{
         {
             customer: req.body.customer,
             orderitems: req.body.orderitems,
-            total: req.body.total
+            total: req.body.total,
+            store: req.body.store,
+            deliveryWorker: req.body.deliveryWorker
         }
       
     

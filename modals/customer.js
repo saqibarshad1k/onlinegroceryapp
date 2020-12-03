@@ -124,21 +124,6 @@ function signupValidation(credentials){
 
 
 
-// for Talha
-// function signupValidation(credentials){
-//     const schema = {
-//         // cart: Joi.object(),
-//         name: Joi.string().min(5).max(30).required(),
-//         phone: Joi.string().min(11).max(20).required(),
-//         password: Joi.string().min(8).max(20).required(),
-//         address: Joi.string().required(),
-//         location: Joi.array().items(Joi.number())
-        
-//     }
-
-//     return Joi.validate(credentials, schema);
-// };
-
 function signinValidation(credentials){
     const schema = {
         phone: Joi.string().min(13).max(13).required(),
