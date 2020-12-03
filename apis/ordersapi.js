@@ -9,7 +9,7 @@ const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
 const {server} = require("../index")
-const io = require("socket.io")(server);
+
 
 
 
@@ -150,13 +150,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     
 });
 
-io.of("https://evening-beach-81187.herokuapp.com/apis/order/getOrders").on("connection", (socket) => {
-    console.log("socket.io: User connected: ", socket.id);
-  
-    socket.on("disconnect", () => {
-      console.log("socket.io: User disconnected: ", socket.id);
-    });
-  });
+
 
 orderRouter.get("/getOrders", async(req, res)=>{
 
