@@ -56,7 +56,9 @@ connection.once("open", () => {
   thoughtChangeStream.on("change", (change) => {
     switch (change.operationType) {
       case "insert":
-        io.of("/apis/order/socket").emit("Dataupdate", change);
+        const thought = change
+
+        io.of("/apis/order/socket").emit("newThought", thought);
         break;
 
     }
