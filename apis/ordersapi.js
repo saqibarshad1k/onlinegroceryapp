@@ -147,4 +147,16 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     
 });
 
+orderRouter.get("/getOrders", async(req, res)=>{
+
+    
+    const orders = await Order.find();   
+
+    if(!orders) return res.status(404).send("Not found")
+
+    return res.send(orders);
+ 
+});
+
+
 module.exports = orderRouter;
