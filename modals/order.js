@@ -101,8 +101,26 @@ const orderSchema = new mongoose.Schema({
     },
     orderitems:[{
         product: {
-           type: ProductSchema,
-           required: true
+           prodID:{
+               type: mongoose.Schema.Types.ObjectId,
+               required: true 
+           },
+           productName: {
+               type: String,
+               required: true
+           },
+           companyName: {
+               type: String,
+               required: true
+           },
+           image:{
+               type: String,
+               required: true
+           },
+           price:{
+               type: Number,
+               required: true
+           }
         },
         quantity: {
         type: Number,
