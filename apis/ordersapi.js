@@ -8,8 +8,6 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-const {server} = require("../index")
-const io = require('socket.io')(server);
 
 
 
@@ -139,12 +137,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     try {
 
         order = await order.save();
-
-       
-
        return res.send(order);
-
-    
 
     }
     catch(ex)
@@ -160,15 +153,6 @@ orderRouter.get("/getOrders", async(req, res)=>{
     const orders = await Order.find();   
 
     if(!orders) return res.status(404).send("Not found")
-
-    io.on('event ha ye', (socket) => {
-        console.log('a user connected');
-      });
-
-
-      io.emit('event ha ye', 1000);
-    
-      
 
     return res.send(orders);
  
