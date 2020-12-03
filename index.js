@@ -6,6 +6,22 @@ const app = express();
 const server = require("http").createServer(app);
 
 
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+});
+
+
+
+io.of("apis/order/socket").on("connection", (socket) => {
+  console.log("socket.io: User connected: ", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("socket.io: User disconnected: ", socket.id);
+  });
+});
 
 
 
@@ -27,6 +43,26 @@ process.on("unhandledRejection", (ex) => {
   mongoose.connect("mongodb+srv://supermart:mart12345@cluster0.sbslu.mongodb.net/<supermart>?retryWrites=true&w=majority", {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true  })
  .then(() => console.log("connected to the database."))
  .catch(err => console.log(`Error:   ${err}`));
+
+
+ const connection = mongoose.connection;
+
+connection.once("open", () => {
+  console.log("MongoDB database connected ------------------");
+
+  console.log("Setting change streams-----------------------");
+  const thoughtChangeStream = connection.collection("orders").watch();
+
+  thoughtChangeStream.on("change", (change) => {
+    switch (change.operationType) {
+      case "insert":
+        const thought = "Congratulations!!!!!"
+
+        io.of("/apis/order/socket").emit("newThought", thought);
+        break;
+    }
+  });
+});
 
 
 
