@@ -6,22 +6,6 @@ const app = express();
 const server = require("http").createServer(app);
 
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"]
-  }
-});
-
-
-
-io.of("apis/order/sssaaa").on("connection", (socket) => {
-  console.log("socket.io: User connected: ", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected: ", socket.id);
-  });
-});
 
 
 
