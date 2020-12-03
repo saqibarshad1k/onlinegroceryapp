@@ -1,9 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
-
-
 const app = express();
+
+const io = require('socket.io')();
+
+
+
+
+io.on('connection', (client) => {
+  client.on('subscribeToTimer', (interval) => {
+    console.log('client is subscribing to timer with interval ', interval);
+    setInterval(() => {
+      client.emit('timer', new Date());
+    }, interval);
+  });
+});
+
+
+
+
+
 
 process.on("uncaughtException", (ex) => {
   console.log("This exception is caught outside express. The error is below:");
@@ -38,11 +54,13 @@ process.on("unhandledRejection", (ex) => {
 
 require("./startup/routers")(app);
 require("./startup/prod")(app);
-require("./startup/config")(app);
 
- 
+
+
+
+
 const port = process.env.PORT || 3000
-app.listen(port, () => console.log(`Listening to port ${port}.`));
+io.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
