@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-
-
 const app = express();
+
+const server = require("http").createServer(app);
+
+
 
 process.on("uncaughtException", (ex) => {
   console.log("This exception is caught outside express. The error is below:");
@@ -42,7 +44,8 @@ require("./startup/config")(app);
 
  
 const port = process.env.PORT || 3000
-app.listen(port, () => console.log(`Listening to port ${port}.`));
+server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
+module.exports.server = server;

@@ -8,6 +8,8 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
+const {server} = require("../index")
+const io = require("socket.io")(server);
 
 
 
@@ -137,6 +139,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     try {
 
         order = await order.save();
+        
        return res.send(order);
 
     }
@@ -147,12 +150,30 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     
 });
 
+io.of("/apis/order/socket").on("connection", (socket) => {
+    console.log("socket.io: User connected: ", socket.id);
+  
+    socket.on("disconnect", () => {
+      console.log("socket.io: User disconnected: ", socket.id);
+    });
+  });
+
 orderRouter.get("/getOrders", async(req, res)=>{
+
+    io.of("/api/socket").on("connection", (socket) => {
+        console.log("socket.io: User connected: ", socket.id);
+      
+        socket.on("disconnect", () => {
+          console.log("socket.io: User disconnected: ", socket.id);
+        });
+      });
 
     
     const orders = await Order.find();   
 
     if(!orders) return res.status(404).send("Not found")
+
+
 
     return res.send(orders);
  
