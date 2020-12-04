@@ -58,7 +58,7 @@ connection.once("open", () => {
       case "insert":
         const thought = change.fullDocument;
 
-        io.of("/apis/order/socket").emit("newThought", thought);
+        io.of("/apis/order/socket").emit("orderUpdate", thought);
         break;
 
     }
