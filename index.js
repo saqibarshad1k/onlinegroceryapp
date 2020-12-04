@@ -51,9 +51,9 @@ connection.once("open", () => {
   console.log("MongoDB database connected ------------------");
 
   console.log("Setting change streams-----------------------");
-  const thoughtChangeStream = connection.collection("orders").watch();
+  const orderChangeStream = connection.collection("orders").watch();
 
-  thoughtChangeStream.on("change", (change) => {
+  orderChangeStream.on("change", (change) => {
     switch (change.operationType) {
       case "insert":
         const thought = change.fullDocument;
