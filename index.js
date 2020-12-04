@@ -56,9 +56,9 @@ connection.once("open", () => {
   orderChangeStream.on("change", (change) => {
     switch (change.operationType) {
       case "insert":
-        const thought = change.fullDocument;
+        const ODR = change.fullDocument;
 
-        io.of("/apis/order/socket").emit("orderUpdate", thought);
+        io.of("/apis/order/socket").emit("orderUpdate", ODR);
         break;
 
     }
