@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const server = require("http").createServer(app);
+const orderChangeStream;
 
 
 const io = require("socket.io")(server, {
@@ -51,7 +52,7 @@ connection.once("open", () => {
   console.log("MongoDB database connected ------------------");
 
   console.log("Setting change streams-----------------------");
-  const orderChangeStream = connection.collection("orders").watch();
+   orderChangeStream = connection.collection("orders").watch();
 
   // orderChangeStream.on("change", (change) => {
   //   switch (change.operationType) {
@@ -93,5 +94,5 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
-module.exports.orderChangeStream = orderChangeStream;
+module.exports.orderChangeStream = this.orderChangeStream;
 module.exports.io = io;
