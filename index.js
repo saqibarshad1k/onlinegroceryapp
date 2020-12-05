@@ -47,29 +47,29 @@ process.on("unhandledRejection", (ex) => {
 
  const connection = mongoose.connection;
 
-connection.once("open", () => {
-  console.log("MongoDB database connected ------------------");
+// connection.once("open", () => {
+//   console.log("MongoDB database connected ------------------");
 
-  console.log("Setting change streams-----------------------");
-  const orderChangeStream = connection.collection("orders").watch();
+//   console.log("Setting change streams-----------------------");
+//   const orderChangeStream = connection.collection("orders").watch();
 
-  orderChangeStream.on("change", (change) => {
-    switch (change.operationType) {
-      case "insert":
+//   orderChangeStream.on("change", (change) => {
+//     switch (change.operationType) {
+//       case "insert":
 
-        const ODR = change.fullDocument;
-        console.log("......" + ODR)
+//         const ODR = change.fullDocument;
+//         console.log("......" + ODR)
 
-        if(ODR.status === "pending")
-        {
-          io.of("/apis/order/socket").emit("orderUpdate", ODR);
-        }
+//         if(ODR.status === "pending")
+//         {
+//           io.of("/apis/order/socket").emit("orderUpdate", ODR);
+//         }
 
-        break;
+//         break;
 
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
 
@@ -93,3 +93,5 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
+module.exports.connection = connection;
+module.exports.io = io;
