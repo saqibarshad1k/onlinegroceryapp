@@ -166,7 +166,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 orderRouter.get("/getOrders", async(req, res)=>{
 
-    io.of("apis/order/getloc").on("connection", (socket) => {
+    io.of("apis/order/socket").on("connection", (socket) => {
         console.log("socket.io: User connected: ", socket.id);
       
         socket.on("disconnect", () => {
@@ -174,7 +174,7 @@ orderRouter.get("/getOrders", async(req, res)=>{
         });
       });
 
-      io.of("/apis/order/getloc").emit("getloc", "yyyyyyyeeeeeeeeeeellllllllllllllooooooooooooo");
+      io.of("/apis/order/socket").emit("getloc", "yyyyyyyeeeeeeeeeeellllllllllllllooooooooooooo");
 
 
    
