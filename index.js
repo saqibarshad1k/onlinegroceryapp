@@ -93,4 +93,4 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
-module.exports.server = server;
+module.exports.io = io;

@@ -8,7 +8,7 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-
+const {io} = require("../index")
 
 
 
@@ -139,6 +139,8 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     
  );
     try {
+
+        io.of("/apis/order/getloc").emit("give me location");
 
         order = await order.save();
         
