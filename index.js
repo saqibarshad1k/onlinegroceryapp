@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const server = require("http").createServer(app);
-const orderChangeStream;
+const orderChangeStream = "" ;
 
 
 const io = require("socket.io")(server, {
@@ -94,5 +94,5 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
-module.exports.orderChangeStream = this.orderChangeStream;
+module.exports.orderChangeStream = orderChangeStream;
 module.exports.io = io;
