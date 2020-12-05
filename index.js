@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const app = express();
 
 const server = require("http").createServer(app);
-let orderChangeStream = "" ;
 
 
 const io = require("socket.io")(server, {
@@ -52,24 +51,24 @@ connection.once("open", () => {
   console.log("MongoDB database connected ------------------");
 
   console.log("Setting change streams-----------------------");
-   orderChangeStream = connection.collection("orders").watch();
+  const orderChangeStream = connection.collection("orders").watch();
 
-  // orderChangeStream.on("change", (change) => {
-  //   switch (change.operationType) {
-  //     case "insert":
+  orderChangeStream.on("change", (change) => {
+    switch (change.operationType) {
+      case "insert":
 
-  //       const ODR = change.fullDocument;
-  //       console.log("......" + ODR)
+        const ODR = change.fullDocument;
+        console.log("......" + ODR)
 
-  //       if(ODR.status === "pending")
-  //       {
-  //         io.of("/apis/order/socket").emit("orderUpdate", ODR);
-  //       }
+        if(ODR.status === "pending")
+        {
+          io.of("/apis/order/socket").emit("orderUpdate", ODR);
+        }
 
-  //       break;
+        break;
 
-  //   }
-  // });
+    }
+  });
 });
 
 
@@ -94,5 +93,4 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
-module.exports.orderChangeStream = orderChangeStream;
-module.exports.io = io;
+module.exports.server = server;
