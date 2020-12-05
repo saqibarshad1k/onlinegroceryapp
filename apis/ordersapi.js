@@ -17,13 +17,7 @@ const io = require("socket.io")(server, {
     }
   });
 
-  io.of("apis/order/getloc").on("connection", (socket) => {
-    console.log("socket.io: User connected: ", socket.id);
   
-    socket.on("disconnect", () => {
-      console.log("socket.io: User disconnected: ", socket.id);
-    });
-  });
   
 
 
@@ -156,9 +150,6 @@ orderRouter.post("/placeorder",  async(req, res)=>{
  );
     try {
 
-        io.of("/apis/order/getloc").emit("getloc", "yyyyyyyeeeeeeeeeeellllllllllllllooooooooooooo");
-
-        console.log(server)
         order = await order.save();
         
        return res.send(order);
@@ -174,6 +165,17 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 
 orderRouter.get("/getOrders", async(req, res)=>{
+
+    io.of("apis/order/getloc").on("connection", (socket) => {
+        console.log("socket.io: User connected: ", socket.id);
+      
+        socket.on("disconnect", () => {
+          console.log("socket.io: User disconnected: ", socket.id);
+        });
+      });
+
+      io.of("/apis/order/getloc").emit("getloc", "yyyyyyyeeeeeeeeeeellllllllllllllooooooooooooo");
+
 
    
     const orders = await Order.find({status: "pending"});   
