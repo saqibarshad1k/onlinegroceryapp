@@ -8,7 +8,8 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-const {server} = require("../index")
+const app = express();
+const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
     cors: {
      origin: "*",
