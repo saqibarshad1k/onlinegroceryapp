@@ -140,7 +140,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
  );
     try {
 
-        io.of("/apis/order/getloc").emit("give me location");
+        io.of("/apis/order/getloc").emit("getloc", "yyyyyyyeeeeeeeeeeellllllllllllllooooooooooooo");
 
         order = await order.save();
         
