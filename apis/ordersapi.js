@@ -8,7 +8,7 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-const {server} = require("../index")
+const {orderChangeStream} = require("../index")
 
 
 
@@ -140,6 +140,23 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     
  );
     try {
+
+        orderChangeStream.on("change", (change) => {
+            switch (change.operationType) {
+              case "insert":
+        
+                const ODR = change.fullDocument;
+                console.log("......" + ODR)
+        
+                if(ODR.status === "pending")
+                {
+                  io.of("/apis/order/socket").emit("orderUpdate", ODR);
+                }
+        
+                break;
+        
+            }
+          });
 
         order = await order.save();
         
