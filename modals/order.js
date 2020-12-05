@@ -156,6 +156,7 @@ function orderValidation(credentials){
     const schema = {
         // cart: Joi.object(),
     
+        status: Joi.string(),
         customer: Joi.required(),
         orderitems : Joi.required(),
         total: Joi.required(),

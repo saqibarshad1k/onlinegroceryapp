@@ -129,6 +129,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     let order = new Order(
 
         {
+            status: req.body.status,
             customer: req.body.customer,
             orderitems: req.body.orderitems,
             total: req.body.total,
