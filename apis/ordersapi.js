@@ -141,22 +141,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
  );
     try {
 
-        orderChangeStream.on("change", (change) => {
-            switch (change.operationType) {
-              case "insert":
         
-                const ODR = change.fullDocument;
-                console.log("......" + ODR)
-        
-                if(ODR.status === "pending")
-                {
-                  io.of("/apis/order/socket").emit("orderUpdate", ODR);
-                }
-        
-                break;
-        
-            }
-          });
 
         order = await order.save();
         
