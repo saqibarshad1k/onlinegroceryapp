@@ -17,6 +17,15 @@ const io = require("socket.io")(server, {
     }
   });
 
+  io.of("apis/order/getloc").on("connection", (socket) => {
+    console.log("socket.io: User connected: ", socket.id);
+  
+    socket.on("disconnect", () => {
+      console.log("socket.io: User disconnected: ", socket.id);
+    });
+  });
+  
+
 
 
 
