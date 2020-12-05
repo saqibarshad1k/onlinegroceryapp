@@ -58,12 +58,13 @@ connection.once("open", () => {
       case "insert":
 
         const ODR = change.fullDocument;
+        console.log("......" + ODR)
 
         if(ODR.status === "pending")
         {
           io.of("/apis/order/socket").emit("orderUpdate", ODR);
         }
-        
+
         break;
 
     }
