@@ -86,6 +86,10 @@ const productSchema = new mongoose.Schema({
         minlength: 1,
         required: true
     },
+    quantity: {
+        type: Number,
+        default: 1
+    },
     price:{
         type: String,
         maxlength: 6,
@@ -154,6 +158,7 @@ function productValidation(credentials){
         subcategoryname: Joi.required(),
         subsubcategoryname: Joi.required(),
         image: Joi.string(),
+        quantity: Joi.number()
         
     }
     return Joi.validate(credentials, schema);

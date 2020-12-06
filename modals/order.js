@@ -101,7 +101,8 @@ const orderSchema = new mongoose.Schema({
     },
     orderitems:[{
         product: {
-           prodID:{
+            quantity: Number,
+           _id:{
                type: mongoose.Schema.Types.ObjectId,
                required: true 
            },
@@ -121,12 +122,7 @@ const orderSchema = new mongoose.Schema({
                type: Number,
                required: true
            }
-        },
-        quantity: {
-        type: Number,
-        required: true,
-        default: null
-    }
+        }
     }],
     total: {
         type: Number,
