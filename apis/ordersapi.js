@@ -8,17 +8,46 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server, {
-    cors: {
-     origin: "*",
-      methods: ["GET", "POST"]
-    }
-  });
+const {connection} = require("../index")
 
-  
-  
+
+
+
+
+const app = express();
+
+const server = require("http").createServer(app);
+
+
+const io = require("socket.io")(server, {
+  cors: {
+   origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+
+
+io.of("apis/order/socket").on("connection", (socket) => {
+  console.log("socket.io: User connected: ", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("socket.io: User disconnected: ", socket.id);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -168,10 +197,8 @@ orderRouter.get("/getOrders", async(req, res)=>{
 
    console.log("iiiiiisssssssskkkkkkkkkeeeee neiche")
 
-      io.of("/apis/order/socket").emit("getloc", "yyyyyyyeeeeeeeeeeellllllllllllllooooooooooooo");
-
-
-   
+   io.of("/apis/order/socket2").emit("orderUpdate2", "Chal raha ha");
+            
     const orders = await Order.find({status: "pending"});   
 
     if(!orders) return res.status(404).send("Not found")
