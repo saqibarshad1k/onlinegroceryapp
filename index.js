@@ -1,10 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
 const app = express();
-
 const server = require("http").createServer(app);
-
 
 const io = require("socket.io")(server, {
   cors: {
@@ -86,19 +83,11 @@ connection.once("open", () => {
 require("./startup/routers")(app);
 require("./startup/prod")(app);
 require("./startup/config")(app);
-// const consumer =
- require("./sockets/test")(io)
-
-// consumer.start(io);
 
 
-
- 
 const port = process.env.PORT || 3000
 server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 
 module.exports.port = port;
-module.exports.server = server;
-module.exports.connection = connection;

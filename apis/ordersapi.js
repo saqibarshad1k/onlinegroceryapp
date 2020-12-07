@@ -8,48 +8,6 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-const {port} = require("../index")
-
-
-
-
-
-const app = express();
-
-const server = require("http").createServer(app);
-
-
-const io = require("socket.io")(server, {
-  cors: {
-   origin: "*",
-    methods: ["GET", "POST"]
-  }
-});
-
-
-
-io.of("apis/order/socket2").on("connection", (socket) => {
-  console.log("socket.io: User connected: ", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected: ", socket.id);
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -200,8 +158,6 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 
 orderRouter.get("/getOrders", async(req, res)=>{
-
-   console.log("This is port bruh: " + port);
 
     const orders = await Order.find({status: "pending"});   
 

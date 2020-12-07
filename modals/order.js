@@ -100,7 +100,6 @@ const orderSchema = new mongoose.Schema({
             unique: false
     },
     orderitems:[{
-        product: {
             quantity: Number,
            _id:{
                type: mongoose.Schema.Types.ObjectId,
@@ -122,7 +121,7 @@ const orderSchema = new mongoose.Schema({
                type: Number,
                required: true
            }
-        }
+        
     }],
     total: {
         type: Number,
