@@ -13,7 +13,7 @@ const bodyParser = require("body-parser")
 const error = require("../middlewares/error");
 // const adminRouter = require("../apis/admin");
 
-module.exports = function(app, io){
+module.exports = function(app){
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
