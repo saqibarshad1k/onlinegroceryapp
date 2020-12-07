@@ -42,6 +42,7 @@ io.of("apis/order/socket").on("connection", (socket) => {
 
 
 
+server.listen(port, () => console.log(`Listening to port in OrderAPi ${port}.`));
 
 
 
