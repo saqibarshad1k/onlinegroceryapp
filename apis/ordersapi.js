@@ -8,7 +8,7 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
-const {connection} = require("../index")
+const {port} = require("../index")
 
 
 
@@ -201,7 +201,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 orderRouter.get("/getOrders", async(req, res)=>{
 
-   
+   console.log("This is port bruh: " + port);
 
     const orders = await Order.find({status: "pending"});   
 
