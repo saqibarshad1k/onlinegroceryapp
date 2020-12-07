@@ -87,9 +87,14 @@ require("./startup/routers")(app);
 require("./startup/prod")(app);
 require("./startup/config")(app);
 
+require('./sockets/test')(io);
+
+
+
  
 const port = process.env.PORT || 3000
 server.listen(port, () => console.log(`Listening to port ${port}.`));
+
 
 
 module.exports.port = port;
