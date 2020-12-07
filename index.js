@@ -6,22 +6,22 @@ const app = express();
 const server = require("http").createServer(app);
 
 
-const io = require("socket.io")(server, {
-  cors: {
-   origin: "*",
-    methods: ["GET", "POST"]
-  }
-});
+// const io = require("socket.io")(server, {
+//   cors: {
+//    origin: "*",
+//     methods: ["GET", "POST"]
+//   }
+// });
 
 
 
-io.of("apis/order/socket").on("connection", (socket) => {
-  console.log("socket.io: User connected: ", socket.id);
+// io.of("apis/order/socket").on("connection", (socket) => {
+//   console.log("socket.io: User connected: ", socket.id);
 
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected: ", socket.id);
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("socket.io: User disconnected: ", socket.id);
+//   });
+// });
 
 
 
@@ -45,31 +45,31 @@ process.on("unhandledRejection", (ex) => {
  .catch(err => console.log(`Error:   ${err}`));
 
 
- const connection = mongoose.connection;
+//  const connection = mongoose.connection;
 
-connection.once("open", () => {
-  console.log("MongoDB database connected ------------------");
+// connection.once("open", () => {
+//   console.log("MongoDB database connected ------------------");
 
-  console.log("Setting change streams-----------------------");
-  const orderChangeStream = connection.collection("orders").watch();
+//   console.log("Setting change streams-----------------------");
+//   const orderChangeStream = connection.collection("orders").watch();
 
-  orderChangeStream.on("change", (change) => {
-    switch (change.operationType) {
-      case "insert":
+//   orderChangeStream.on("change", (change) => {
+//     switch (change.operationType) {
+//       case "insert":
 
-        const ODR = change.fullDocument;
-        console.log("......" + ODR)
+//         const ODR = change.fullDocument;
+//         console.log("......" + ODR)
 
-        if(ODR.status === "pending")
-        {
-          io.of("/apis/order/socket").emit("orderUpdate", ODR);
-        }
+//         if(ODR.status === "pending")
+//         {
+//           io.of("/apis/order/socket").emit("orderUpdate", ODR);
+//         }
 
-        break;
+//         break;
 
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
 
@@ -93,5 +93,5 @@ server.listen(port, () => console.log(`Listening to port ${port}.`));
 
 
 module.exports.port = port;
-module.exports.server = server;
-module.exports.connection = connection;
+// module.exports.server = server;
+// module.exports.connection = connection;

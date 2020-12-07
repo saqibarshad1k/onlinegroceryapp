@@ -199,7 +199,9 @@ orderRouter.get("/getOrders", async(req, res)=>{
    console.log("iiiiiisssssssskkkkkkkkkeeeee neiche")
 
    io.of("/apis/order/socket2").emit("orderUpdate2", "Chal raha ha");
-            
+       
+   console.log("down babay")
+
     const orders = await Order.find({status: "pending"});   
 
     if(!orders) return res.status(404).send("Not found")
