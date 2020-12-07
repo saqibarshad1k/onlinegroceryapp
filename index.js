@@ -30,6 +30,12 @@ io.of("apis/order/socket2").on("connection", (socket) => {
   });
 });
 
+io.of("/apis/order/socket2").emit("orderUpdate2", "event emitted");
+       
+
+        
+
+
 
 
 process.on("uncaughtException", (ex) => {
