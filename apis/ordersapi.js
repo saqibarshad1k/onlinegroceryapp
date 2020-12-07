@@ -91,14 +91,6 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
     const deliveryWorkers = await DeliveryWorker.find({areaCode: selectedArea.areaCode, status: "available"}).select("-password")
    
-    console.log("iiiiiisssssssskkkkkkkkkeeeee neiche")
-
-    io.of("/apis/order/socket2").emit("orderUpdate2", "Chal raha ha");
-        
-    console.log("down babay") 
-
-     
-
 
     for (var i = 0; i < deliveryWorkers.length; i++) {
         var object = deliveryWorkers[i];
