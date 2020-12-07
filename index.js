@@ -76,8 +76,7 @@ connection.once("open", () => {
           io.of("/apis/order/socket").emit("orderUpdate", ODR);
         }
 
-        io.of("apis/order/socket2").emit("orderUpdate2", "event emitted");
-       
+        
 
 
         break;
@@ -98,7 +97,7 @@ connection.once("open", () => {
 //  throw new Error("lskjnvonvevrv")
   
 
-require("./startup/routers")(app);
+require("./startup/routers")(app)(io);
 require("./startup/prod")(app);
 require("./startup/config")(app);
 

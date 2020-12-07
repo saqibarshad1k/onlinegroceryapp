@@ -13,7 +13,7 @@ const bodyParser = require("body-parser")
 const error = require("../middlewares/error");
 // const adminRouter = require("../apis/admin");
 
-module.exports = function(app){
+module.exports = function(app, io){
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,7 +24,7 @@ app.use("/apis/product", productRouter);
 app.use("/apis/store", storeRouter);
 app.use("/apis/area", areaRouter);
 app.use("/apis/deliveryWorker", deliveryWorkersRouter);
-app.use("/apis/order", orderRouter);
+app.use("/apis/order", orderRouter(io));
 app.use(error);
 
 // app.use("/apis/admin", adminRouter);

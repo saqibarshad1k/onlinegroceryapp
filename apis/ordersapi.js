@@ -9,6 +9,8 @@ const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
 
+module.exports = function(io) {
+
 
 
 orderRouter.post("/placeorder",  async(req, res)=>{
@@ -151,6 +153,9 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 orderRouter.get("/getOrders", async(req, res)=>{
 
+    io.of("/apis/order/socket2").emit("orderUpdate", "hahahahahah");
+       
+
     const orders = await Order.find({status: "pending"});   
 
     if(!orders) return res.status(404).send("Not found")
@@ -161,5 +166,7 @@ orderRouter.get("/getOrders", async(req, res)=>{
  
 });
 
+}
 
-module.exports = orderRouter;
+
+// module.exports = orderRouter;
