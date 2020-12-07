@@ -86,7 +86,6 @@ connection.once("open", () => {
 require("./startup/routers")(app);
 require("./startup/prod")(app);
 require("./startup/config")(app);
-
 require('./sockets/test')(io);
 
 
