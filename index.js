@@ -12,8 +12,6 @@ const io = require("socket.io")(server, {
   }
 });
 
-const orderex = require('./apis/ordersapi')(io);
-
 
 io.of("apis/order/socket").on("connection", (socket) => {
   console.log("socket.io: User connected: ", socket.id);
