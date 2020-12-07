@@ -12,49 +12,6 @@ const {connection, port} = require("../index")
 
 
 
-
-
-
-const app = express();
-
-const server = require("http").createServer(app);
-
-
-const io = require("socket.io")(server, {
-  cors: {
-   origin: "*",
-    methods: ["GET", "POST"]
-  }
-});
-
-
-
-io.of("apis/order/socket").on("connection", (socket) => {
-  console.log("socket.io: User connected: ", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected: ", socket.id);
-  });
-});
-
-
-
-
-
-
-
-server.listen(port, () => console.log(`Listening to port in OrderAPi ${port}.`));
-
-
-
-
-
-
-
-
-
-
-
 orderRouter.post("/placeorder",  async(req, res)=>{
  
 
@@ -199,6 +156,35 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 orderRouter.get("/getOrders", async(req, res)=>{
 
    console.log("iiiiiisssssssskkkkkkkkkeeeee neiche")
+
+   const app = express();
+
+const server = require("http").createServer(app);
+
+
+const io = require("socket.io")(server, {
+  cors: {
+   origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+
+
+io.of("apis/order/socket").on("connection", (socket) => {
+  console.log("socket.io: User connected: ", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("socket.io: User disconnected: ", socket.id);
+  });
+});
+
+server.listen(port, () => console.log(`Listening to port in OrderAPi ${port}.`));
+
+
+
+
+
 
    io.of("/apis/order/socket2").emit("orderUpdate2", "Chal raha ha");
             
