@@ -30,8 +30,6 @@ io.of("apis/order/socket2").on("connection", (socket) => {
   });
 });
 
-io.of("apis/order/socket2").emit("orderUpdate2", "event emitted");
-       
 
         
 
@@ -77,6 +75,10 @@ connection.once("open", () => {
         {
           io.of("/apis/order/socket").emit("orderUpdate", ODR);
         }
+
+        io.of("apis/order/socket2").emit("orderUpdate2", "event emitted");
+       
+
 
         break;
 
