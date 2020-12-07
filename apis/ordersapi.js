@@ -9,7 +9,7 @@ const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
 
-module.exports = function(io) {
+module.exports =  (io) => {
 
     io.of("apis/order/socket2").on("connection", (socket) => {
         console.log("socket.io: User connected from socket2: ", socket.id);
