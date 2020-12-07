@@ -7,11 +7,12 @@ const server = require("http").createServer(app);
 
 const io = require("socket.io")(server, {
   cors: {
-   origin: "*",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
 
+const orderex = require('./apis/ordersapi')(io);
 
 
 io.of("apis/order/socket").on("connection", (socket) => {
@@ -22,20 +23,7 @@ io.of("apis/order/socket").on("connection", (socket) => {
   });
 });
 
-io.of("apis/order/socket2").on("connection", (socket) => {
-  console.log("socket.io: User connected from socket2: ", socket.id);
-
-  socket.on("disconnect", () => {
-    console.log("socket.io: User disconnected from socket2: ", socket.id);
-  });
-});
-
-
-        
-
-
-
-
+   
 process.on("uncaughtException", (ex) => {
   console.log("This exception is caught outside express. The error is below:");
   console.log(ex);
@@ -97,10 +85,10 @@ connection.once("open", () => {
 //  throw new Error("lskjnvonvevrv")
   
 
-require("./startup/routers")(app)(io);
+require("./startup/routers")(app);
 require("./startup/prod")(app);
 require("./startup/config")(app);
-
+app.use("/apis/order/test", orderex);
 
 const port = process.env.PORT || 3000
 server.listen(port, () => console.log(`Listening to port ${port}.`));

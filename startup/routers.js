@@ -24,7 +24,7 @@ app.use("/apis/product", productRouter);
 app.use("/apis/store", storeRouter);
 app.use("/apis/area", areaRouter);
 app.use("/apis/deliveryWorker", deliveryWorkersRouter);
-app.use("/apis/order", orderRouter(io));
+app.use("/apis/order", orderRouter);
 app.use(error);
 
 // app.use("/apis/admin", adminRouter);
