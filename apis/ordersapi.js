@@ -137,7 +137,10 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
     io.of("/apis/order/socket2").emit("orderUpdate2", "Chal raha ha");
         
-    console.log("down babay")
+    console.log("down babay") 
+
+     
+
 
     for (var i = 0; i < deliveryWorkers.length; i++) {
         var object = deliveryWorkers[i];
@@ -171,7 +174,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     let order = new Order(
 
         {
-            quantity: req.body.quantity,
+            
             status: req.body.status,
             customer: req.body.customer,
             orderitems: req.body.orderitems,
@@ -179,8 +182,6 @@ orderRouter.post("/placeorder",  async(req, res)=>{
             store: req.body.store,
             deliveryWorker: req.body.deliveryWorker
         }
-      
-    
  );
     try {
 
