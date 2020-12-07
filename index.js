@@ -30,7 +30,7 @@ io.of("apis/order/socket2").on("connection", (socket) => {
   });
 });
 
-io.emit("orderUpdate2", "event emitted");
+io.of("apis/order/socket2").emit("orderUpdate2", "event emitted");
        
 
         
