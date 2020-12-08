@@ -110,6 +110,8 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     const sorted = sortObjectsArray(deliveryWorkers, 'tempDist')
     selectedDeliveryWorker = sorted[0];
 
+
+
     if(!selectedDeliveryWorker) {
         return res.send("No deliveryWorker")
     }
@@ -150,6 +152,10 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 
 orderRouter.get("/getOrders", async(req, res)=>{
+    
+
+    req.app.io.of("/apis/order/socket2").emit("orderUpdate2", "It is FUCKING WORKING");
+    console.log(".............................")
 
     const orders = await Order.find({status: "pending"});   
 

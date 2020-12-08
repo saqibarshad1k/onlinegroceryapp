@@ -30,11 +30,9 @@ io.of("apis/order/socket2").on("connection", (socket) => {
 });
 
 
+
+app.io = io;
         
-
-
-
-
 process.on("uncaughtException", (ex) => {
   console.log("This exception is caught outside express. The error is below:");
   console.log(ex);
