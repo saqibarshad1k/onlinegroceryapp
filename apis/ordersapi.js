@@ -94,6 +94,8 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
     for (var i = 0; i < deliveryWorkers.length; i++) {
         var object = deliveryWorkers[i];
+        
+
 
          d1 =  geolib.getDistance(
             { latitude: object.location.lat, longitude: object.location.long },
@@ -156,6 +158,11 @@ orderRouter.get("/getOrders", async(req, res)=>{
 
     req.app.io.of("/apis/order/socket2").emit("orderUpdate2", "It is FUCKING WORKING");
     console.log(".............................")
+
+    req.app.io.of("apis/order/loc").on("loc", (socket) => {
+        console.log(socket);
+    })
+
 
     const orders = await Order.find({status: "pending"});   
 
