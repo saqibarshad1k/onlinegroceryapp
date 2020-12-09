@@ -1,7 +1,7 @@
 const express = require("express");
 const orderRouter = express.Router();
 const _ = require("lodash");
-const {Order, orderValidation} = require("../modals/order");
+const {Order, orderValidation, orderValidationfirst} = require("../modals/order");
 const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 const {Area} = require("../modals/area")
 const {Store} = require("../modals/store");
@@ -14,7 +14,7 @@ const sortObjectsArray = require('sort-objects-array');
 orderRouter.post("/placeorder",  async(req, res)=>{
  
 
-       const {error} =  orderValidation(req.body);
+       const {error} =  orderValidationfirst(req.body);
 
        if(error) {
            return res.status(400).send(error);
@@ -129,14 +129,21 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
         {
             
-            status: req.body.status,
             customer: req.body.customer,
             orderitems: req.body.orderitems,
             total: req.body.total,
-            store: req.body.store,
-            deliveryWorker: req.body.deliveryWorker
+            store: selectedStore,
+            deliveryWorker: selectedDeliveryWorker
         }
  );
+
+ const {error} =  orderValidationfirst(req.body);
+
+ if(error) {
+     return res.status(400).send(error);
+ }
+
+
     try {
 
         order = await order.save();

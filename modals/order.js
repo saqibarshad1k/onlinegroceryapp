@@ -127,6 +127,18 @@ const orderSchema = new mongoose.Schema({
 
 const Order = mongoose.model("order", orderSchema);
 
+function orderValidationfirst(credentials){
+    const schema = {
+        
+        customer: Joi.required(),
+        orderitems : Joi.required(),
+        total: Joi.required()
+        
+    }
+    return Joi.validate(credentials, schema);
+};
+
+
 function orderValidation(credentials){
     const schema = {
         // cart: Joi.object(),
@@ -139,8 +151,6 @@ function orderValidation(credentials){
         deliveryWorker: Joi.required()
         
     }
-   
-
     return Joi.validate(credentials, schema);
 };
 
@@ -148,6 +158,7 @@ function orderValidation(credentials){
 
 module.exports.Order = Order;
 module.exports.orderValidation = orderValidation;
+module.exports.orderValidationfirst = orderValidationfirst;
 
 
 
