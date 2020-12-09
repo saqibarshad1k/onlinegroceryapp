@@ -5,80 +5,7 @@ const config = require("config");
 const { ProductSchema } = require("./product");
 const deliveryWorkersRouter = require("../apis/deliveryWorkerapi");
 
-const Cust = new mongoose.Schema({
 
-    custID:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-
-    name:{
-        type: String,
-        maxlength: 30, 
-        minlength: 5,
-        required: true
-    },
-    phone:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    location:{
-        lat: Number,
-        long: Number
-    }
-});
-
-const storeSchema = new mongoose.Schema({
-
-    storeID:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-
-    storeName:{
-        type: String,
-        maxlength: 30, 
-        minlength: 5,
-        required: true
-    },
-    phone:{
-        type: String,
-        maxlength: 20,
-        minlength: 13,
-        required: true
-    },
-    location:{
-        lat: Number,
-        long: Number
-    }
-    
-});
-
-const deliveryWorkerSchema = new mongoose.Schema({
-
-    deliveryWorkerID:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-    name:{
-        type: String,
-        maxlength: 30, 
-        minlength: 5,
-        required: true
-    },
-    phone:{
-        type: String,
-        maxlength: 20,
-        minlength: 11,
-        unique: true,
-        required: true
-    }
-});
 
 
 
@@ -95,9 +22,30 @@ const orderSchema = new mongoose.Schema({
         default: Date.now
     },
     customer: {
-            type: Cust,
-            required: true,
-            unique: false
+        _id:{
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+    
+        name:{
+            type: String,
+            maxlength: 30, 
+            minlength: 5,
+            required: true
+        },
+        phone:{
+            type: String,
+            unique: false,
+            required: true
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        location:{
+            lat: Number,
+            long: Number
+        }
     },
     orderitems:[{
             quantity: Number,
@@ -128,14 +76,46 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
     store:{
-        type: storeSchema,
-        required: true
-
+        _id:{
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+    
+        storeName:{
+            type: String,
+            maxlength: 30, 
+            minlength: 5,
+            required: true
+        },
+        phone:{
+            type: String,
+            maxlength: 20,
+            minlength: 13,
+            required: true
+        },
+        location:{
+            lat: Number,
+            long: Number
+        }
     },
     deliveryWorker:{
-        type: deliveryWorkerSchema,
-        required: true
-
+        _id:{
+            type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+        name:{
+            type: String,
+            maxlength: 30, 
+            minlength: 5,
+            required: true
+        },
+        phone:{
+            type: String,
+            maxlength: 20,
+            minlength: 11,
+            unique: true,
+            required: true
+        }
     }
 });
 
