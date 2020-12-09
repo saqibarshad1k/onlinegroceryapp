@@ -85,7 +85,7 @@ productRouter.get("/getallproducts",  async (req, res)=>{
 
 
 
-    const products = await Product.find();
+    const products = await Product.find().select("-__v");
 
     if(!products) return res.status(404).send("Not found")
 

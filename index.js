@@ -72,10 +72,7 @@ connection.once("open", () => {
         {
           io.of("/apis/order/socket").emit("orderUpdate", ODR);
         }
-
         
-
-
         break;
 
     }
