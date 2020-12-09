@@ -137,11 +137,11 @@ orderRouter.post("/placeorder",  async(req, res)=>{
         }
  );
 
- const {error} =  orderValidationfirst(req.body);
+//  const {error} =  orderValidationfirst(req.body);
 
- if(error) {
-     return res.status(400).send(error);
- }
+//  if(error) {
+//      return res.status(400).send(error);
+//  }
 
 
     try {
