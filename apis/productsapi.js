@@ -191,6 +191,45 @@ productRouter.get("/getamaincategory/:id", async(req, res)=>{
  
 });
 
+
+//UPDATE A MAINCATEGORY
+productRouter.put("/updatemaincategory/:id", async (req, res)=>{
+
+    const {error} =  maincategoryValidation(req.body);
+
+       if(error) {
+           return res.status(400).send(error);
+       }
+
+       const main = await Maincategory.findOne({_id: req.params.id})
+
+       if(!main)
+       {
+           return res.status(404).send("Main category with this info. does not exsist")
+       }
+
+    const maincategory = await Maincategory.findByIdAndUpdate({_id: req.params.id},{
+        $set:{
+            mainCategory: main
+        }
+    },{new: true});
+
+    return res.send(maincategory);
+
+});
+
+
+//DELETE A MAINCATEGORY
+
+productRouter.delete("/deletemaincategory/:id", async (req, res) => {
+    const maincate = await Maincategory.findByIdAndRemove(req.params.id);
+  
+    if (!maincate) return res.status(404).send("Already deleted")
+     return  res.send(maincate);
+  });
+
+
+
 // SUB CATEGORY ENDPOINT
 // ADD A SUB CATEGORY
 
