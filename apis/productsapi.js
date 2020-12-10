@@ -210,7 +210,8 @@ productRouter.put("/updatemaincategory/:id", async (req, res)=>{
 
     const maincategory = await Maincategory.findByIdAndUpdate({_id: req.params.id},{
         $set:{
-            mainCategory: req.body
+            maincategoryname: req.body.maincategoryname,
+            image: req.body.image
         }
     },{new: true});
 
