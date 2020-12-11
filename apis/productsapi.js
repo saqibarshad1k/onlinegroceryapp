@@ -118,6 +118,8 @@ productRouter.put("/updateproduct/:id", async (req, res)=>{
         $set:{
             productName: req.body.productName,
             companyName: req.body.companyName,
+            type: req.body.type,
+            description: req.body.description,
             price: req.body.price,
             mainCategory: main,
         subCategory: {
