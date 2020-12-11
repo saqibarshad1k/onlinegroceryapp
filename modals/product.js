@@ -3,6 +3,7 @@ const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const  jwt = require("jsonwebtoken");
 const config = require("config");
+const { max } = require("lodash");
 
 const maincategorySchema = new mongoose.Schema({
     maincategoryname:{
@@ -86,6 +87,16 @@ const productSchema = new mongoose.Schema({
         minlength: 1,
         required: true
     },
+    type: {
+        type: String,
+        maxlength:10,
+        required:true
+    },
+    description: {
+        type: String,
+        maxlength:100,
+        required:true
+    },
     quantity: {
         type: Number,
         default: 1
@@ -158,7 +169,9 @@ function productValidation(credentials){
         subcategoryname: Joi.required(),
         subsubcategoryname: Joi.required(),
         image: Joi.string(),
-        quantity: Joi.number()
+        quantity: Joi.number(),
+        type: Joi.string().max(10).required(),
+        description: Joi.string().max(100).required()
         
     }
     return Joi.validate(credentials, schema);

@@ -35,6 +35,8 @@ productRouter.post("/addnewproduct", async(req, res)=>{
     let product = new Product({
         productName : req.body.productName,
         companyName : req.body.companyName,
+        type: req.body.type,
+        description: req.body.description,
         price : req.body.price,
         mainCategory: main,
         subCategory: {
