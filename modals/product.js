@@ -206,7 +206,7 @@ function subcategoryValidation(credentials){
     const schema = {
        
         subcategoryname: Joi.string().min(1).max(50).required(),
-        mainCategory: Joi.required(),
+        maincategoryname: Joi.required(),
         image: Joi.string()
     }
     return Joi.validate(credentials, schema);
