@@ -373,51 +373,60 @@ productRouter.get("/getasubsubcategory/:id", async(req, res)=>{
  
 });
 
+//DELETE A SUBSUBCATEGORY
+
+productRouter.delete("/deletesubsubcategory/:id", async (req, res) => {
+    const subsubcate = await Subsubcategory.findByIdAndRemove(req.params.id);
+  
+    if (!subsubcate) return res.status(404).send("Already deleted")
+     return  res.send(subsubcate);
+  });    
 
 
+    
+//UPDATE A SUBCATEGORY
+productRouter.put("/updatesubsubcategory/:id", async (req, res)=>{
+
+    const {error} =  subcategoryValidation(req.body);
+
+       if(error) {
+           return res.status(400).send(error);
+       }
+
+       const main = await Maincategory.findOne({_id: req.body.maincategoryname})
+
+       if(!main)
+       {
+           return res.status(404).send("Main category with this info. does not exsist")
+       }
+
+       const sub = await Subcategory.findOne({_id: req.body.subcategoryname})
+
+       if(!sub)
+       {
+           return res.status(404).send("Sub category with this info. does not exsist")
+       }
+
+    const subcategory = await Subcategory.findByIdAndUpdate({_id: req.params.id},{
+        $set:{
+            subsubcategoryname: req.body.subcategoryname,
+            image: req.body.image,
+            mainCategory: {
+                _id: main._id,
+                maincategoryname: main.maincategoryname
+            },
+            subCategory: {
+                _id: sub._id,
+                subcategoryname: sub.subcategoryname
+            }
+        }
+    },{new: true});
+
+    return res.send(subcategory);
+
+});
 
 
-
-
-// productRouter.post("/addtocart", async (req, res)=>{
-
-
-//    const c = await Product.findById({"_id": req.body.userId},{"cart.proId": req.body.proId});
-
-//    let d = lodash.filter(c.cart, {"proId": "5e2e37d161cb64220c71882f"})
-
-//    res.send(d);
-
-//     });
-
-// const c =  await Product.findOneAndUpdate({ _id: req.body.userId }, 
-//     { $push:
-//         { cart :
-//             { proId: req.body.proId, count: "0"  }
-//         }
-//         });
-
-   
-
-// productRouter.post("/orders", async(req, res)=>{
-
-//     const {error} =  orderStageOneValidation(req.body);
-
-//     if(error) {
-//         return res.status(400).send(error);
-//     }
-
-//  let order = new Order({
-//      custID: req.body.custID,
-//      order: req.body.order
-
-//  });
-
-//  order = await order.save();
- 
-//  res.send(order);
-
-// });
 
 
 
