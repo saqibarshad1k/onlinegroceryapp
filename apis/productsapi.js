@@ -259,6 +259,47 @@ productRouter.post("/addsubcategory", async(req, res)=>{
     });
 
 
+
+//DELETE A MAINCATEGORY
+
+productRouter.delete("/deletesubcategory/:id", async (req, res) => {
+    const subcate = await Subcategory.findByIdAndRemove(req.params.id);
+  
+    if (!subcate) return res.status(404).send("Already deleted")
+     return  res.send(subcate);
+  });    
+
+
+    
+//UPDATE A SUBCATEGORY
+productRouter.put("/updatesubcategory/:id", async (req, res)=>{
+
+    const {error} =  subcategoryValidation(req.body);
+
+       if(error) {
+           return res.status(400).send(error);
+       }
+
+       const sub = await Subcategory.findOne({_id: req.params.id})
+
+       if(!sub)
+       {
+           return res.status(404).send("Sub category with this info. does not exsist")
+       }
+
+    const subcategory = await Subcategory.findByIdAndUpdate({_id: req.params.id},{
+        $set:{
+            subcategoryname: req.body.subcategoryname,
+            image: req.body.image
+        }
+    },{new: true});
+
+    return res.send(subcategory);
+
+});
+
+
+
  //  GET ALL SUB CATEGORIES
  productRouter.get("/getsubcategory", async(req, res)=>{
 
@@ -283,7 +324,7 @@ productRouter.get("/getasubcategory/:id", async(req, res)=>{
 
 
 // SUB SUB CATEGORY ENDPOINTS
-// ADD A NEW SUB CATEGORY
+// ADD A NEW SUB-SUB CATEGORY
 
 productRouter.post("/addsubsubcategory", async(req, res)=>{
    
