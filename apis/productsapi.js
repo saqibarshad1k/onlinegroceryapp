@@ -280,18 +280,21 @@ productRouter.put("/updatesubcategory/:id", async (req, res)=>{
            return res.status(400).send(error);
        }
 
-       const sub = await Subcategory.findOne({_id: req.params.id})
+       const main = await Maincategory.findOne({_id: req.body.maincategoryname})
 
-       if(!sub)
+       if(!main)
        {
-           return res.status(404).send("Sub category with this info. does not exsist")
+           return res.status(404).send("Main category with this info. does not exsist")
        }
 
     const subcategory = await Subcategory.findByIdAndUpdate({_id: req.params.id},{
         $set:{
             subcategoryname: req.body.subcategoryname,
             image: req.body.image,
-            mainCategory: req.body.mainCategory
+            mainCategory: {
+                _id: main._id,
+                maincategoryname: main.maincategoryname
+            }
         }
     },{new: true});
 
