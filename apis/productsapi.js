@@ -260,7 +260,7 @@ productRouter.post("/addsubcategory", async(req, res)=>{
 
 
 
-//DELETE A MAINCATEGORY
+//DELETE A SUBCATEGORY
 
 productRouter.delete("/deletesubcategory/:id", async (req, res) => {
     const subcate = await Subcategory.findByIdAndRemove(req.params.id);
@@ -290,7 +290,8 @@ productRouter.put("/updatesubcategory/:id", async (req, res)=>{
     const subcategory = await Subcategory.findByIdAndUpdate({_id: req.params.id},{
         $set:{
             subcategoryname: req.body.subcategoryname,
-            image: req.body.image
+            image: req.body.image,
+            mainCategory: req.body.mainCategory
         }
     },{new: true});
 
