@@ -366,7 +366,7 @@ productRouter.get("/getsubsubcategory", async(req, res)=>{
 productRouter.get("/getasubsubcategory/:id", async(req, res)=>{
 
     
-    const subsubCate = await SubSubcategory.findOne({_id: req.params.id});   
+    const subsubCate = await Subsubcategory.findOne({_id: req.params.id});   
     
     
     return res.send(subsubCate);
