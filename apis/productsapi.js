@@ -387,7 +387,7 @@ productRouter.delete("/deletesubsubcategory/:id", async (req, res) => {
 //UPDATE A SUBCATEGORY
 productRouter.put("/updatesubsubcategory/:id", async (req, res)=>{
 
-    const {error} =  subcategoryValidation(req.body);
+    const {error} =  subsubcategoryValidation(req.body);
 
        if(error) {
            return res.status(400).send(error);
@@ -407,7 +407,7 @@ productRouter.put("/updatesubsubcategory/:id", async (req, res)=>{
            return res.status(404).send("Sub category with this info. does not exsist")
        }
 
-    const subcategory = await Subcategory.findByIdAndUpdate({_id: req.params.id},{
+    const subsubcategory = await Subsubcategory.findByIdAndUpdate({_id: req.params.id},{
         $set:{
             subsubcategoryname: req.body.subcategoryname,
             image: req.body.image,
@@ -422,7 +422,7 @@ productRouter.put("/updatesubsubcategory/:id", async (req, res)=>{
         }
     },{new: true});
 
-    return res.send(subcategory);
+    return res.send(subsubcategory);
 
 });
 
