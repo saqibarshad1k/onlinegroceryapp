@@ -246,11 +246,16 @@ productRouter.post("/addsubcategory", async(req, res)=>{
         return res.status(400).send(error);
     }
 
+    main = await Maincategory.findOne({_id = req.body.maincategoryname});
+
  let newsubcategory = new Subcategory(
      {
          subcategoryname: req.body.subcategoryname,
-         mainCategory: req.body.mainCategory,
-         image: req.body.image
+         image: req.body.image,
+         mainCategory: {
+             _id: main._id,
+             maincategoryname: main.maincategoryname
+         },
      });
 
      newsubcategory = await newsubcategory.save();
@@ -338,11 +343,20 @@ productRouter.post("/addsubsubcategory", async(req, res)=>{
         return res.status(400).send(error);
     }
 
+     const main = await Maincategory.findOne({_id: req.body.maincategoryname});
+     const sub = await Subcategory.findOne({_id: req.body.subcategoryname});
+
  let newsubsubcategory = new Subsubcategory(
      {
         subsubcategoryname: req.body.subsubcategoryname,
-        subCategory: req.body.subCategory,
-         mainCategory: req.body.mainCategory,
+        subCategory: {
+            _id: sub._id,
+            subcategoryname: sub.subcategoryname
+        },
+        mainCategory: {
+            _id: sub._id,
+            maincategoryname: sub.maincategoryname
+        },
          image: req.body.image
      });
 
