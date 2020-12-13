@@ -246,7 +246,7 @@ productRouter.post("/addsubcategory", async(req, res)=>{
         return res.status(400).send(error);
     }
 
-    main = await Maincategory.findOne({_id = req.body.maincategoryname});
+    main = await Maincategory.findOne({_id: req.body.maincategoryname});
 
  let newsubcategory = new Subcategory(
      {
