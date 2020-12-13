@@ -409,7 +409,7 @@ productRouter.put("/updatesubsubcategory/:id", async (req, res)=>{
 
     const subsubcategory = await Subsubcategory.findByIdAndUpdate({_id: req.params.id},{
         $set:{
-            subsubcategoryname: req.body.subcategoryname,
+            subsubcategoryname: req.body.subsubcategoryname,
             image: req.body.image,
             mainCategory: {
                 _id: main._id,
