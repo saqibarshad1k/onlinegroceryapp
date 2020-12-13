@@ -354,8 +354,8 @@ productRouter.post("/addsubsubcategory", async(req, res)=>{
             subcategoryname: sub.subcategoryname
         },
         mainCategory: {
-            _id: sub._id,
-            maincategoryname: sub.maincategoryname
+            _id: main._id,
+            maincategoryname: main.maincategoryname
         },
          image: req.body.image
      });
