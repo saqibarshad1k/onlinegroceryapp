@@ -163,12 +163,8 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 orderRouter.get("/getOrders", async(req, res)=>{
     
 
-    req.app.io.of("/apis/order/socket2").emit("orderUpdate2", "It is FUCKING WORKING");
+    req.app.io.of("/apis/order/socket").emit("orderUpdate2", "It is FUCKING WORKING");
     console.log(".............................")
-
-    req.app.io.of("apis/order/loc").on("loc", (socket) => {
-        console.log(socket);
-    })
 
 
     const orders = await Order.find({status: "pending"});   
