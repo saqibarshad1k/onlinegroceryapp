@@ -56,9 +56,7 @@ process.on("unhandledRejection", (ex) => {
  const connection = mongoose.connection;
 
 connection.once("open", () => {
-  console.log("MongoDB database connected ------------------");
-
-  console.log("Setting change streams-----------------------");
+  console.log("changestream connection");
   const orderChangeStream = connection.collection("orders").watch();
 
   orderChangeStream.on("change", (change) => {
@@ -66,8 +64,7 @@ connection.once("open", () => {
       case "insert":
 
         const ODR = change.fullDocument;
-        console.log("......" + ODR)
-
+        console.log("This is new order:" + ODR)
         if(ODR.status === "pending")
         {
           io.of("/apis/order/socket").emit("orderUpdate", ODR);
