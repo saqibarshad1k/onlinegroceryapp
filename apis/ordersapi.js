@@ -161,8 +161,8 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 
 orderRouter.get("/getOrders", async(req, res)=>{
-    
 
+   
     req.app.io.of("/apis/order/socket").emit("orderUpdate2", "It is FUCKING WORKING");
     console.log(".............................")
 
