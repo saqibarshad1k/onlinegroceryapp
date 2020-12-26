@@ -158,13 +158,10 @@ orderRouter.post("/placeorder",  async(req, res)=>{
             var count = object.quantity;
 
             const product = await Product.findByIdAndUpdate({_id: object._id},{
-                $set:{
-                
-                  
-                    bought: 100000
-
-                    
+                $inc: {
+                    bought: count
                 }
+                
             });
                 
         }
