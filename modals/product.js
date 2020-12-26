@@ -87,6 +87,14 @@ const productSchema = new mongoose.Schema({
         minlength: 1,
         required: true
     },
+    sponsered: {
+        type: Boolean,
+        default: false
+    },
+    bought: {
+        type: Number,
+        default: 0
+    },
     type: {
         type: String,
         maxlength:10,

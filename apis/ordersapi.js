@@ -8,6 +8,7 @@ const {Store} = require("../modals/store");
 const {DeliveryWorker} = require("../modals/deliveryWorker")
 const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
+const { Product } = require("../modals/product");
 
 
 
@@ -22,7 +23,9 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
        const areas = await Area.find()
        const stores = await Store.find().select("-password")
+       const products = await Product.find();
        
+
        var selectedStore = "";
        var selectedArea = "";
        var selectedDeliveryWorker = "";
@@ -108,6 +111,9 @@ orderRouter.post("/placeorder",  async(req, res)=>{
     }
 
 
+   
+
+
 
     const sorted = sortObjectsArray(deliveryWorkers, 'tempDist')
     selectedDeliveryWorker = sorted[0];
@@ -145,6 +151,23 @@ orderRouter.post("/placeorder",  async(req, res)=>{
 
 
     try {
+
+        for (var i = 0; i < req.body.orderitems.length; i++) {
+            var object = req.body.orderitems[i];
+
+            var count = object.quantity;
+
+            const product = await Product.findByIdAndUpdate({_id: object._id},{
+                $set:{
+                
+                  
+                    bought: bought + count
+
+                    
+                }
+            });
+                
+        }
 
         order = await order.save();
         
