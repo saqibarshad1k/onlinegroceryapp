@@ -161,7 +161,7 @@ orderRouter.post("/placeorder",  async(req, res)=>{
                 $set:{
                 
                   
-                    bought: bought + count
+                    bought: 100000
 
                     
                 }
