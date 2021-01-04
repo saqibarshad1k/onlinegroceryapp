@@ -10,10 +10,6 @@ const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 
 
 
-// const {Order, orderStageOneValidation} = require("../models/order");
-// const {MainCata, SubCata, Product, Cart} = require("../models/product")
-// var lodash = require('lodash');
-
 
 customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
