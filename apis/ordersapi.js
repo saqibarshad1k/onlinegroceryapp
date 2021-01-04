@@ -10,8 +10,7 @@ const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
 const { Product } = require("../modals/product");
 
-packaged
-delivered
+
 
 orderRouter.put("/orderpackaged/:id", async (req, res)=>{
 
