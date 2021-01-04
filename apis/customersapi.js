@@ -107,7 +107,8 @@ customersRouter.put("/updatecustomerinfo/:id", auth,asyncMiddleware( async (req,
         });
     
         return  res.send(cust);
-}));
+}));  
+
 
 
 
