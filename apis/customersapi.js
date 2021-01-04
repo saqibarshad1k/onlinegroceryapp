@@ -17,9 +17,9 @@ const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 
 customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
-    const id = await (await Customer.findById(req.customer._id)).select("-password");
+    const id = await Customer.findById(req.customer._id).select("-password");
    
-    
+
    
     return res.send(id);
 
