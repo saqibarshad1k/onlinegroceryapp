@@ -20,7 +20,7 @@ customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
     const validPassword = await bcrypt.compare(id.password);
 
-    id.password = validPassword;
+   // id.password = validPassword;
 
     return res.send(id);
 
