@@ -9,22 +9,19 @@ const auth = require("../middlewares/customerAuth")
 const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 
 
+
 // const {Order, orderStageOneValidation} = require("../models/order");
 // const {MainCata, SubCata, Product, Cart} = require("../models/product")
 // var lodash = require('lodash');
 
 
-customersRouter.get("/me", async (req, res)=>{
+customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
     const id = await Customer.findById(req.customer._id);
 
-    const validPassword = await bcrypt.compare(id.password);
-
-   // id.password = validPassword;
-
     return res.send(id);
 
-});
+}));
 
 customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
 {
