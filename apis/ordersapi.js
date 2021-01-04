@@ -14,7 +14,7 @@ const { Product } = require("../modals/product");
 
 orderRouter.put("/orderpackaged/:id", async (req, res)=>{
 
-       let order = await Order.findById({_id: req.params._id})
+       let order = await Order.findById({_id: req.params.id})
        
        order.status = "packaged"
 
