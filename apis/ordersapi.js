@@ -18,7 +18,21 @@ orderRouter.put("/orderpackaged/:id", async (req, res)=>{
        
        order.status = "packaged"
 
+       order = await order.save();
+
        return res.send(order);
+
+});
+
+orderRouter.put("/orderdelivered/:id", async (req, res)=>{
+
+    let order = await Order.findById({_id: req.params.id})
+    
+    order.status = "delivered"
+
+    order = await order.save();
+
+    return res.send(order);
 
 });
 
