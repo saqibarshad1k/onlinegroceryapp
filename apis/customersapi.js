@@ -14,7 +14,7 @@ const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 // var lodash = require('lodash');
 
 
-customersRouter.get("/me", auth, async (req, res)=>{
+customersRouter.get("/me", async (req, res)=>{
 
     const id = await Customer.findById(req.customer._id);
 
