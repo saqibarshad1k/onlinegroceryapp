@@ -92,9 +92,7 @@ customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
 
 customersRouter.put("/updatecustomerinfo/:id", auth,asyncMiddleware( async (req, res) => {
 
-    const salt = await bcrypt.genSalt(10);
-    req.body.password = await bcrypt.hash(req.body.password, salt);
-
+   
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
             $set: {
