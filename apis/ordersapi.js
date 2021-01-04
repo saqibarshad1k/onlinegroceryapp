@@ -10,6 +10,19 @@ const geolib = require('geolib');
 const sortObjectsArray = require('sort-objects-array');
 const { Product } = require("../modals/product");
 
+packaged
+delivered
+
+orderRouter.put("/orderpackaged/:id", async (req, res)=>{
+
+       let order = await Order.findOneById({_id: req.body._id})
+       
+       order = {status: "packaged"};
+
+       return res.send(order);
+
+});
+
 
 
 orderRouter.post("/placeorder",  async(req, res)=>{
