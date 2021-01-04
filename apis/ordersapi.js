@@ -213,7 +213,7 @@ orderRouter.get("/getOrders", async(req, res)=>{
     console.log(".............................")
 
 
-    const orders = await Order.find({status: "pending"});   
+    const orders = await Order.find();   
 
     if(!orders) return res.status(404).send("Not found")
 

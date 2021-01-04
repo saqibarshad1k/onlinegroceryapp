@@ -97,9 +97,9 @@ customersRouter.put("/updatecustomerinfo/:id", auth,asyncMiddleware( async (req,
         {
             $set: {
                 name: req.body.name,
-            //    location: req.body.location,
+     
                 address: req.body.address,
-            //    password: req.body.password,
+        
                 phone: req.body.phone
             } 
         });
