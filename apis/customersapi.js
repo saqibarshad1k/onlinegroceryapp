@@ -38,8 +38,6 @@ customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
        return res.status(400).send("Invalid user or password");
         
     }
-
- 
    
     const validPassword = await bcrypt.compare(req.body.password, cust.password);
     
@@ -55,12 +53,6 @@ customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
 
     
 
-}));
-
-
-customersRouter.get("/gettestText", asyncMiddleware( async(req, res) =>{
-
-    return res.send("Depolyment working successfully.")
 }));
 
 
@@ -95,35 +87,18 @@ customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
     
 }));
 
-customersRouter.put("/updatecustname/:id", auth,asyncMiddleware( async (req, res) => {
+customersRouter.put("/updatecustomerinfo/:id", auth,asyncMiddleware( async (req, res) => {
+
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(req.body.password, salt);
 
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
             $set: {
-                name: req.body.name
-            } 
-        });
-    
-        return  res.send(cust);
-}));
-
-customersRouter.put("/updatecustlocation/:id", auth, asyncMiddleware( async (req, res) => {
-
-    const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
-        {
-            $set: {
-                location: req.body.location
-            } 
-        });
-    
-        return  res.send(cust);
-}));
-
-customersRouter.put("/updatecustphone/:id", auth, asyncMiddleware( async (req, res) => {
-
-    const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
-        {
-            $set: {
+                name: req.body.name,
+                location: req.body.location,
+                address: req.body.address,
+                password: req.body.password,
                 phone: req.body.phone
             } 
         });
@@ -131,33 +106,7 @@ customersRouter.put("/updatecustphone/:id", auth, asyncMiddleware( async (req, r
         return  res.send(cust);
 }));
 
-customersRouter.put("/updatecustaddress/:id", auth,asyncMiddleware( async (req, res) => {
 
-    const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
-        {
-            $set: {
-                address: req.body.address
-            } 
-        });
-    
-        return  res.send(cust);
-}));
-
-customersRouter.put("/updatecustpassword/:id", auth, asyncMiddleware( async (req, res) => {
-
-    var cust = await Customer.findById({ _id: req.params.id });
-
-    const salt = await bcrypt.genSalt(10);
-    cust.password = await bcrypt.hash(req.body.password, salt);
-
-
-
-     cust = await cust.save();
-
-
-    
-        return  res.send(cust);
-}));
 
 
 module.exports = customersRouter;
