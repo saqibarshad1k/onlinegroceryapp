@@ -15,11 +15,11 @@ const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 // var lodash = require('lodash');
 
 
-customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
+customersRouter.get("/password", auth, asyncMiddleware( async (req, res)=>{
 
     const id = await Customer.findById(req.customer._id);
 
-    const validPassword = await bcrypt.compare(req.body.password, id.password);
+    const validPassword = await bcrypt.compare(req.params.password, id.password);
 
     return res.send(validPassword);
 
