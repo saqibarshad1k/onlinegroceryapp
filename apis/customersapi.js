@@ -14,7 +14,7 @@ const asyncMiddleware = require("../middlewares/asyncerrorhandler")
 // var lodash = require('lodash');
 
 
-customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
+customersRouter.get("/me", auth, async (req, res)=>{
 
     const id = await Customer.findById(req.customer._id);
 
@@ -24,7 +24,7 @@ customersRouter.get("/me", auth, asyncMiddleware( async (req, res)=>{
 
     return res.send(id);
 
-}));
+});
 
 customersRouter.post("/signin", asyncMiddleware( async (req, res)=>
 {
