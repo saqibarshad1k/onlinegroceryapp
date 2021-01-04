@@ -92,6 +92,7 @@ customersRouter.post("/signup", asyncMiddleware( async(req, res)=>{
 
 customersRouter.put("/updatecustomerinfo/:id", auth,asyncMiddleware( async (req, res) => {
 
+
    
     const cust = await Customer.findByIdAndUpdate({ _id: req.params.id },
         {
@@ -103,6 +104,9 @@ customersRouter.put("/updatecustomerinfo/:id", auth,asyncMiddleware( async (req,
                 phone: req.body.phone
             } 
         });
+
+        console.log(req.body)
+        
     
         return  res.send(cust);
 }));  
